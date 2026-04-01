@@ -393,43 +393,45 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right: Lang + CTA */}
-          <div className="hidden lg:flex items-center justify-end" style={{ gap: 10 }}>
-            <LangSwitch locale={locale} />
+          {/* Right column — desktop: Lang+CTA | mobile: hamburger */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
 
-            <div style={{ width: 1, height: 16, background: '#E5E7EB', flexShrink: 0 }} />
+            {/* Desktop */}
+            <div className="hidden lg:flex items-center" style={{ gap: 10 }}>
+              <LangSwitch locale={locale} />
 
-            <Link href="/mitmachen"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                height: 40, padding: '0 20px',
-                fontSize: 14, fontWeight: 600, color: '#ffffff',
-                background: '#0D1F6E',
-                borderRadius: 7,
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                transition: 'background 0.2s, transform 0.2s, box-shadow 0.2s',
-                boxShadow: '0 1px 3px rgba(13,31,110,0.2)',
-                letterSpacing: '-0.01em',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = '#1B3A8C'
-                e.currentTarget.style.transform = 'translateY(-1px)'
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(13,31,110,0.3)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = '#0D1F6E'
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 1px 3px rgba(13,31,110,0.2)'
-              }}
-            >
-              {t('member')} <ArrowRight size={13} strokeWidth={2.5} />
-            </Link>
-          </div>
+              <div style={{ width: 1, height: 16, background: '#E5E7EB', flexShrink: 0 }} />
 
-          {/* Mobile hamburger */}
-          <div className="lg:hidden flex justify-end">
-            <button onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
+              <Link href="/mitmachen"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  height: 40, padding: '0 20px',
+                  fontSize: 14, fontWeight: 600, color: '#ffffff',
+                  background: '#0D1F6E',
+                  borderRadius: 7,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                  transition: 'background 0.2s, transform 0.2s, box-shadow 0.2s',
+                  boxShadow: '0 1px 3px rgba(13,31,110,0.2)',
+                  letterSpacing: '-0.01em',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = '#1B3A8C'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(13,31,110,0.3)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = '#0D1F6E'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(13,31,110,0.2)'
+                }}
+              >
+                {t('member')} <ArrowRight size={13} strokeWidth={2.5} />
+              </Link>
+            </div>
+
+            {/* Mobile hamburger */}
+            <button className="lg:hidden" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
               style={{
                 width: 38, height: 38,
                 display: 'flex', flexDirection: 'column',
@@ -452,6 +454,7 @@ export default function Navbar() {
                 transform: mobileOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
               }} />
             </button>
+
           </div>
         </div>
       </nav>
