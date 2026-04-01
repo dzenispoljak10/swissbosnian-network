@@ -299,9 +299,9 @@ export default function Navbar() {
         <div style={{
           maxWidth: 1140, margin: '0 auto', padding: '0 24px',
           width: '100%', height: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1fr auto 1fr',
+          display: 'flex',
           alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
 
           {/* Logo */}
@@ -394,7 +394,7 @@ export default function Navbar() {
           </div>
 
           {/* Right column — desktop: Lang+CTA | mobile: hamburger */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginLeft: 'auto' }}>
 
             {/* Desktop */}
             <div className="hidden lg:flex items-center" style={{ gap: 10 }}>
