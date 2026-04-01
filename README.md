@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Swiss Bosnian Network — Web-App
 
-## Getting Started
+Next.js 16 App-Router Web-App mit zweisprachigem Interface (DE/BS), Admin-Dashboard, Blog, Newsletter und Stripe-Zahlungen.
 
-First, run the development server:
+## Setup (Localhost)
 
+### 1. Dependencies installieren
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Datenbank einrichten
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Lokal (SQLite — kein Setup nötig):**
+```bash
+DATABASE_URL="file:./dev.db"  # bereits in .env gesetzt
+npm run db:push
+npm run db:seed
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Produktion (PostgreSQL / Supabase):**
+1. Erstelle ein Projekt auf [supabase.com](https://supabase.com)
+2. Gehe zu: Settings → Database → Connection string → URI
+3. Ersetze in `.env.local`: `DATABASE_URL="postgresql://..."`
+4. Ändere in `prisma/schema.prisma`: `provider = "postgresql"`
 
-## Learn More
+### 3. Umgebungsvariablen (.env.local)
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="generiere-mit-openssl-rand-base64-32"
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_PUBLISHABLE_KEY="pk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+STRIPE_PRICE_GOENNER="price_..."
+STRIPE_PRICE_PARTNER="price_..."
+RESEND_API_KEY="re_..."
+RESEND_FROM_EMAIL="newsletter@deine-domain.ch"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Dev-Server starten
+```bash
+npm run dev
+# → http://localhost:3000 (leitet zu /de weiter)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Admin-Login
 
-## Deploy on Vercel
+- URL: http://localhost:3000/admin/login
+- E-Mail: `dzenispoljak@gmail.com`
+- Passwort: `Bosna123!`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Stripe Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Produkte in [Stripe Dashboard](https://dashboard.stripe.com) erstellen:
+   - "Gönnerschaft" — CHF 50/Jahr → Price-ID → `STRIPE_PRICE_GOENNER`
+   - "Partnerschaft" — CHF 500/Jahr → Price-ID → `STRIPE_PRICE_PARTNER`
+2. Webhook: `https://domain.ch/api/stripe/webhook`, Event: `checkout.session.completed`
+
+## Deployment (Vercel)
+
+```bash
+npm i -g vercel && vercel
+# Alle Env-Vars in Vercel Dashboard setzen
+```
+
+**Datenbank:** [Supabase](https://supabase.com) oder [Neon](https://neon.tech) (beide mit Gratis-Tier)
+
+## Nützliche Befehle
+
+```bash
+npm run dev          # Dev-Server
+npm run build        # Produktion bauen
+npm run db:push      # Schema in DB pushen
+npm run db:seed      # Test-Daten einfügen
+npm run db:studio    # Prisma Studio (DB-Browser)
+```
+
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript)
+- **Tailwind CSS v4**
+- **Prisma 5** (SQLite lokal / PostgreSQL Produktion)
+- **NextAuth v5** (JWT)
+- **next-intl 4** (DE/BS)
+- **Tiptap** (Rich-Text Editor)
+- **Stripe** + **Resend** + **Framer Motion**

@@ -1,0 +1,377 @@
+{
+  "nav": {
+    "home": "Početna",
+    "network": "Mreža",
+    "about": "O nama",
+    "join": "Pridruži se",
+    "contact": "Kontakt",
+    "blog": "Vijesti",
+    "member": "Postani član",
+    "dropCommunityHeading": "Zajednica",
+    "dropOrgHeading": "Organizacija",
+    "dropCurrentHeading": "Trenutno",
+    "dropMembers": "Članovi",
+    "dropMembersSub": "Postani dio zajednice",
+    "dropEvents": "Događaji",
+    "dropEventsSub": "After-Work & poslovni susreti",
+    "dropGrowth": "Rast",
+    "dropGrowthSub": "Prilike i vidljivost",
+    "dropClub": "Udruženje",
+    "dropClubSub": "Neprofitno & nadstranačko",
+    "dropTeam": "Tim",
+    "dropTeamSub": "Ljudi iza svega",
+    "dropStatutes": "Statut",
+    "dropStatutesSub": "Pravila našeg udruženja",
+    "dropAbout": "Vizija & misija",
+    "dropAboutSub": "Što nas pokreće",
+    "dropContact": "Kontakt",
+    "dropContactSub": "Piši nam",
+    "dropCurrentCta": "Postani član sada — besplatno",
+    "dropNew": "NOVO",
+    "dropAboutHeading": "O nama"
+  },
+  "home": {
+    "hero": {
+      "badge": "Bosanska zajednica u Švicarskoj",
+      "titleLine1": "Tvoja mreža",
+      "titleLine2": "za nove",
+      "titleItalic": "prilike.",
+      "title": "Tvoja mreža za nove prilike.",
+      "subtitle": "Poveži se s bosanskim poduzetnicima, stručnjacima i pojedincima u Švicarskoj, razmjenjuj znanje i koristi ekskluzivne prednosti za svoj osobni i profesionalni razvoj.",
+      "cta": "Saznaj više",
+      "ctaJoin": "Postani član",
+      "socialProof": "200+ članova nam vjeruje"
+    },
+    "quickLinks": {
+      "question": "Želiš li odmah postati član?",
+      "join": "Postani član",
+      "about": "Čitaj o nama",
+      "events": "Otkrij događaje"
+    },
+    "network": {
+      "sectionTitle": "Umrežen, vidljiv i uspješan? Nema problema.",
+      "heading": "Poveži se ciljano",
+      "body": "Pronađi bosanske poduzetnike, stručnjake i istomišljenike diljem Švicarske.",
+      "features": ["Događaji u 5 kantona", "Poslovni susreti & govornici", "Digitalni formati"],
+      "cta": "Saznaj više",
+      "bannerTitle": "Znatiželjni ste kako sve funkcionira?",
+      "bannerBody": "Digitalno ili uživo. Otkrijte kako Swiss Bosnian Network spaja ljude u Švicarskoj.",
+      "bannerCta": "Saznaj više"
+    },
+    "mission": {
+      "title": "Jačanje raznolikosti: Zajedno za bosansko-švicarsku zajednicu",
+      "body": "U našoj mreži, razmjena, međusobno razumijevanje i podrška su u središtu pažnje. Bez obzira jesi li poduzetnik, stručnjak ili privatna osoba – ovdje ćeš naći mjesto gdje možeš doprinositi, rasti i učiti od drugih."
+    },
+    "pillars": {
+      "together": { "title": "zajedno.", "body": "Povezuješ se s zajednicom kako bi dijelio znanje, kontakte i poslovne prilike." },
+      "connected": { "title": "povezan.", "body": "Koristiš ekskluzivne prednosti, poput poslovnih događaja, uzbudljivih ponuda i popusta." },
+      "strong": { "title": "jak.", "body": "Jačaš svoju vidljivost, dobivaš inspiraciju i nove prilike za sebe ili svoje poslovanje." }
+    },
+    "trust": {
+      "title": "200+ članova. 3 godine. 5 kantona.",
+      "twoCountriesTitle": "Dvije zemlje. Jedna zajednica.",
+      "twoCountriesBody": "Švicarska i Bosna i Hercegovina povezane zajedničkim vrijednostima i ciljevima.",
+      "nonprofitTitle": "Neprofitno & nadstranačko",
+      "nonprofitBody": "Registrirano udruženje u Švicarskoj, vođeno volonterski.",
+      "nonprofitCheck": "Nema komercijalnih ili političkih ciljeva",
+      "eventsLabel": "Događaja godišnje",
+      "eventsBody": "After-Work, poslovni susreti & govorničke sesije",
+      "membersLabel": "Aktivnih članova",
+      "membersBody": "Umreženi diljem Švicarske, svakodnevno rastemo"
+    },
+    "bfe": {
+      "badge": "Ekskluzivna prednost članova",
+      "title": "Brands for Employees. Ekskluzivne prednosti za naše članove.",
+      "body": "Kao član Swiss Bosnian Network-a koristiš atraktivne ponude poznatih brendova za zaposlenike — s garancijom najbolje cijene i tjednim mijenjanjem ponuda.",
+      "cta": "Saznaj više",
+      "featuresLabel": "Što te čeka",
+      "features": [
+        { "title": "Garancija najbolje cijene", "body": "Uvijek najbolja dostupna cijena za članove Swiss Bosnian Network-a." },
+        { "title": "Tjedni deali", "body": "Svaki ponedjeljak nove ponude top brendova — ekskluzivno za našu zajednicu." },
+        { "title": "100+ brendova", "body": "Od mode do elektronike i putovanja — širok asortiman za svaki ukus." }
+      ]
+    },
+    "valuesSection": {
+      "badge": "Naše vrijednosti",
+      "tagline": "Što nas čini posebnim.",
+      "body": "Mreža izgrađena na povjerenju, otvorenosti i zajedničkoj viziji.",
+      "cta": "O nama",
+      "openTitle": "Otvoreni & inkluzivni",
+      "openBody": "Svako je dobrodošao – bez obzira na porijeklo, dob ili životni put.",
+      "neutralTitle": "Politički neutralni",
+      "neutralBody": "Fokus na ono što nas povezuje, a ne što nas razdvaja.",
+      "innovativeTitle": "Inovativni",
+      "innovativeBody": "Kreativne ideje i digitalna rješenja za živahnu zajednicu.",
+      "transparentTitle": "Transparentni",
+      "transparentBody": "Iskrenost i otvorenost kao osnova svake suradnje."
+    },
+    "values": {
+      "title": "Naša vizija za snažnu zajednicu",
+      "open": { "title": "Otvoreni & inkluzivni", "body": "U Swiss Bosnian Network-u svako je dobrodošao – bez obzira na porijeklo, dob, spol ili životni put." },
+      "neutral": { "title": "Politički & vjerski neutralni", "body": "Naš fokus je na onome što nas povezuje, a ne na onome što nas razdvaja." },
+      "innovative": { "title": "Inovativni & orijentirani prema budućnosti", "body": "Razmišljamo unaprijed i koristimo kreativne ideje i digitalna rješenja." },
+      "trusted": { "title": "Pouzdani & transparentni", "body": "Iskrenost, otvorenost i jasna komunikacija su osnova svake suradnje." }
+    },
+    "stats": {
+      "membersLabel": "Aktivnih članova",
+      "eventsLabel": "Događaja godišnje",
+      "cantonsLabel": "Kantona umreženo",
+      "yearsLabel": "Godine zajednice"
+    },
+    "pricing": {
+      "badge": "Postani član",
+      "title": "Odaberi svoj put",
+      "titleItalic": "u zajednicu.",
+      "popular": "Popularno",
+      "plans": [
+        { "name": "Član", "price": "Besplatno", "period": "", "desc": "Za sve koji žele biti dio zajednice.", "features": ["Otvoreni događaji & susreti", "Digitalni formati & vijesti", "Razmjena u zajednici"], "cta": "Prijavi se" },
+        { "name": "Pokrovitelj", "price": "CHF 50.–", "period": "/ godišnje", "desc": "Podrži udruženje i uživaj u prednostima.", "features": ["Sve prednosti člana", "Ekskluzivne partnerske ponude", "Pristup poslovnim događajima"], "cta": "Postani pokrovitelj" },
+        { "name": "Partner", "price": "CHF 500.–", "period": "/ godišnje", "desc": "Vidljivost za tvoje poduzeće.", "features": ["Vidljivost na platformi", "Prisutnost na društvenim mrežama", "Ekskluzivni događaji"], "cta": "Postani partner" }
+      ]
+    },
+    "newsletter": {
+      "title": "Pretplati se na naš newsletter",
+      "body": "Primaj ažuriranja o događajima, vijestima zajednice i uzbudljivim prilikama – direktno u sandučić.",
+      "placeholder": "Tvoja e-mail adresa",
+      "cta": "Pretplati se",
+      "success": "Hvala! Uspješno si se pretplatio/la.",
+      "tagline": "Ostani u toku.",
+      "body2": "Događaji, vijesti zajednice i prilike — direktno u tvoj sandučić.",
+      "placeholder2": "tvoja@email.ch",
+      "successMsg": "Uspješno pretplaćen!"
+    }
+  },
+  "about": {
+    "title": "Tim iza Swiss Bosnian Network-a",
+    "subtitle": "Swiss Bosnian Network okuplja Bosance u Švicarskoj kako bi dijelili znanje, iskustva i prilike.",
+    "vision": "Naša vizija",
+    "visionText": "Stvaramo snažnu, umreženu i inspirativnu zajednicu za Bosance u Švicarskoj koji dijele znanje, iskustvo i prilike.",
+    "mission": "Naša misija",
+    "missionText": "Swiss Bosnian Network povezuje poduzetnike, stručnjake i pojedince radi stvaranja dodane vrijednosti kroz razmjenu, partnerstva i inspirativne događaje.",
+    "team": "Ko stoji iza toga?",
+    "joinCta": "Postani član sada",
+    "joinText": "Postani dio naše rastuće zajednice"
+  },
+  "join": {
+    "title": "Pridruži se",
+    "subtitle": "Odaberi članstvo koje ti odgovara",
+    "member": {
+      "title": "Član",
+      "price": "Besplatno",
+      "features": ["Pozivnica na otvorene događaje i susrete", "Pristup digitalnim formatima i vijestima", "Razmjena s zanimljivim osobama", "Inspiracija, pripadnost i umrežavanje"],
+      "cta": "Prijavi se sada"
+    },
+    "goenner": {
+      "title": "Pokrovitelj",
+      "price": "CHF 50.– / godišnje",
+      "features": ["Ekskluzivne partnerske ponude", "Vrijedne mogućnosti umrežavanja", "Inspirativni događaji", "Sve prednosti člana"],
+      "cta": "Postani pokrovitelj"
+    },
+    "partner": {
+      "title": "Partner",
+      "price": "CHF 500.– / godišnje",
+      "features": ["Vidljivost na platformi i društvenim mrežama", "Ciljanje bosanske zajednice", "Ekskluzivni poslovni sastanci", "Sve prednosti pokrovitelja"],
+      "cta": "Postani partner"
+    },
+    "memberForm": {
+      "title": "Zatraži besplatno članstvo",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "email": "E-pošta",
+      "phone": "Telefon (opcionalno)",
+      "company": "Kompanija (opcionalno)",
+      "submit": "Postani član",
+      "success": "Hvala! Tvoja prijava je uspješno poslana.",
+      "error": "Greška pri slanju. Pokušajte ponovo."
+    }
+  },
+  "faq": {
+    "title": "Česta pitanja",
+    "items": [
+      { "q": "Ko stoji iza mreže?", "a": "Swiss Bosnian Network je neprofitno udruženje sa sjedištem u Švicarskoj, vođeno volonterski bez komercijalnih ili političkih ciljeva." },
+      { "q": "Što je pokroviteljstvo i kako funkcionira?", "a": "Pokroviteljstvom finansijski podržavaš udruženje i koristiš različite usluge. Tvoj doprinos direktno ide u razvoj i rad mreže." },
+      { "q": "Kako mogu učiniti svoju kompaniju vidljivom?", "a": "S pokroviteljstvom dobijate mogućnost da svoju kompaniju prezentujete na našoj platformi i društvenim mrežama." },
+      { "q": "Kako mogu učestvovati na događajima?", "a": "Svi termini se objavljuju unaprijed na našoj web stranici i društvenim mrežama. Većina događaja je otvorena i besplatna." },
+      { "q": "Da li je mreža politički ili vjerski orijentirana?", "a": "Ne. Swiss Bosnian Network je potpuno politički i vjerski neutralan. Fokusiramo se na ono što nas povezuje: razmjenu, rast i zajednicu." }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Imaš pitanja ili se želiš javiti?",
+    "name": "Ime",
+    "email": "E-pošta",
+    "subject": "Naslov",
+    "message": "Poruka",
+    "send": "Pošalji",
+    "success": "Hvala! Uskoro ćemo se javiti.",
+    "error": "Greška pri slanju. Pokušajte ponovo."
+  },
+  "blog": {
+    "title": "Vijesti",
+    "subtitle": "Vijesti, uvidi i priče iz zajednice",
+    "readMore": "Čitaj više",
+    "backToBlog": "Nazad na vijesti",
+    "published": "Objavljeno",
+    "noPost": "Nema objava",
+    "notAvailable": "Još nije dostupno na bosanskom"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "subtitle": "Uvijek budi u toku",
+    "email": "E-mail adresa",
+    "firstName": "Ime (opcionalno)",
+    "subscribe": "Pretplati se",
+    "success": "Uspješno pretplaćen!",
+    "error": "Greška pri pretplati."
+  },
+  "statuten": {
+    "title": "Statut",
+    "subtitle": "Statut udruženja Swiss Bosnian Network"
+  },
+  "impressum": {
+    "title": "Impressum",
+    "association": "Udruženje",
+    "name": "Swiss Bosnian Network",
+    "address": "Švicarska",
+    "email": "info@swissbosnian-network.ch"
+  },
+  "agbs": {
+    "title": "Uvjeti korištenja"
+  },
+  "footer": {
+    "menu": "Meni",
+    "useful": "Korisno",
+    "copyright": "© 2025 Swiss Bosnian Network. Sva prava zadržana.",
+    "statutes": "Statut",
+    "imprint": "Impressum",
+    "sitemap": "Sitemap",
+    "agbs": "Uvjeti",
+    "contactTitle": "Imaš pitanja?",
+    "emailReply": "Odgovaramo unutar 24h",
+    "location": "Švicarska",
+    "nonprofit": "Neprofitno udruženje",
+    "description": "Swiss Bosnian Network je neprofitno, volonterski vođeno udruženje bez komercijalnih ili političkih ciljeva.",
+    "community": "Zajednica",
+    "legal": "Pravno",
+    "join": "Postani član",
+    "joinBody": "Postani dio bosanske zajednice u Švicarskoj.",
+    "joinCta": "Pridruži se sada",
+    "home": "Početna",
+    "network": "Mreža",
+    "about": "O nama",
+    "participate": "Pridruži se",
+    "contact": "Kontakt",
+    "news": "Vijesti",
+    "events": "Događaji",
+    "newsletter": "Newsletter",
+    "faq": "FAQ",
+    "brandsForEmployees": "Brands for Employees",
+    "datenschutz": "Zaštita podataka"
+  },
+  "team": {
+    "members": [
+      { "name": "Hamza", "role": "Predsjednik", "bio": "Diplomirani ekonomist sa fokusom na razvoj kompanija i udruženja." },
+      { "name": "Jasmina", "role": "Potpredsjednica", "bio": "Executive MBA u Marketing Managementu, Univerzitet Bern." },
+      { "name": "Emir", "role": "Finansije", "bio": "Financijski planer s federalnom licencom i iskustvom u financijskom upravljanju." },
+      { "name": "Anesa", "role": "Social Media & Events", "bio": "BSc Business Administration. Planira i organizira događaje." },
+      { "name": "Dzenan", "role": "Aktuar", "bio": "BSc Ekonomija Banking & Finance, odgovoran za evidenciju i upravljanje članovima." }
+    ]
+  },
+  "netzwerk": {
+    "heroBadge": "Mreža",
+    "heroTitle": "Tvoja zajednica\nu Švicarskoj.",
+    "heroSubtitle": "Swiss Bosnian Network spaja ljude iz Švicarske i Bosne — digitalno i uživo.",
+    "heroJoin": "Pridruži se sada",
+    "heroLearn": "Saznaj više",
+    "stats": [
+      { "value": "200+", "label": "Članova" },
+      { "value": "15+", "label": "Događaja / god." },
+      { "value": "5", "label": "Kantona" },
+      { "value": "3", "label": "Godina" }
+    ],
+    "formatsBadge": "Naši formati",
+    "formatsTitle": "Kako živi mreža.",
+    "formats": [
+      { "title": "Connect Online", "subtitle": "Virtualno umrežavanje & dijeljenje znanja", "description": "Koristi digitalne sastanke i webinare za stjecanje vrijednih uvida, uspostavljanje novih kontakata i razmjenu s ekspertima iz različitih industrija." },
+      { "title": "Cheers & Connections", "subtitle": "Susreti, razmjena & umrežavanje", "description": "Na našim After-Work događajima u središtu su susreti. U opuštenoj atmosferi spajamo zanimljive ličnosti i podstičemo dugoročne odnose." },
+      { "title": "Stage & Story", "subtitle": "Inspirativne priče & velika pozornica", "description": "Naši Live-eventi okupljaju govornike, poduzetnike i kreativne umove. Od panel razgovora do keynota — ovdje nastaju novi impulsi." }
+    ],
+    "membershipBadge": "Članstvo",
+    "membershipTitle": "Postani dio zajednice.",
+    "membershipSubtitle": "Otvoreno za sve koji žele da se umreže, razmijene i zajednički rastu.",
+    "memberBadge": "Besplatno",
+    "memberTitle": "Besplatno članstvo",
+    "memberDesc": "Kao dio naše zajednice dobijaš:",
+    "memberFeatures": ["Pozivnice na događaje & susrete", "Vijesti & inspiracija iz zajednice", "Pristup digitalnim formatima"],
+    "memberCta": "Prijaviti se",
+    "goennerBadge": "CHF 50.– / godišnje",
+    "goennerTitle": "Postani pokrovitelj",
+    "goennerDesc": "Podrži mrežu i osiguraj ekskluzivne prednosti:",
+    "goennerFeatures": ["Early Access za sve događaje", "Ekskluzivne partnerske ponude & popusti", "Sudjelovanje na Member-only događajima", "Vidljivost zajednice & profil"],
+    "goennerCta": "Postani pokrovitelj",
+    "whyBadge": "Zašto SBN?",
+    "whyTitle": "Više od samo mreže.",
+    "whyBody": "Swiss Bosnian Network je živahno mjesto susreta — za ljude koji spajaju Švicarsku i Bosnu, žele rasti i traže istomišljenike.",
+    "whyCta": "Više o nama",
+    "whyItems": [
+      { "title": "Zajednica", "body": "Mjesto za sve koji žele da se povežu i rastu." },
+      { "title": "Dvije zemlje", "body": "Švicarska i Bosna — ujedinjene zajedničkim vrijednostima." },
+      { "title": "Energija", "body": "Redovni događaji i svježi impulsi za tvoju mrežu." },
+      { "title": "Neprofitno", "body": "Nema profita, nema komercijalizacije — samo prava vrijednost." }
+    ],
+    "ctaTitle": "Postani dio Swiss Bosnian Network-a.",
+    "ctaSubtitle": "Upoznaj zanimljive ljude, dijeli znanje i rasti zajedno.",
+    "ctaButton": "Postani član"
+  },
+  "bfe": {
+    "badge": "Ekskluzivna prednost članstva",
+    "heroSubtitle": "Uz Brands for Employees nudimo našim članovima atraktivnu dodatnu uslugu za njihove zaposlenike — besplatno, bez obaveza i bez dodatnog angažmana.",
+    "heroJoin": "Prijaviti se sada",
+    "heroMember": "Postani član",
+    "introBadge": "Što je to?",
+    "introTitle": "Ekskluzivne prednosti za vaše zaposlenike",
+    "introBody1": "Putem ekskluzivne platforme vaši zaposlenici dobivaju pristup odabranim ponudama poznatih brendova iz brojnih oblasti — po garantiranim top-cijenama i s redovito mijenjajućim akcijama.",
+    "introBody2": "Sudjelovanje je jednostavno i u potpunosti se provodi za vas, tako da za vaše poduzeće nema dodatnog organizacijskog opterećenja.",
+    "introChecks": ["Besplatno za sve SBN članove", "Nema minimalnog broja zaposlenika", "Kompletna provedba od strane nas"],
+    "companyBadge": "Za poduzeća",
+    "companyTitle": "Zbog toga će se vaše poduzeće radovati",
+    "companyBenefits": [
+      { "title": "Bez troškova", "body": "Korištenje za vaše poduzeće ne donosi nikakve naknade. Profitiraš — potpuno besplatno." },
+      { "title": "Bez obveza", "body": "Nema ugovornih obaveza ni preduvjeta poput minimalnog broja ili minimalnog prometa." },
+      { "title": "Bez dodatnog posla", "body": "Cjelokupna komunikacija i provedba — od dostave do podrške i izvještaja — u potpunosti je preuzeta." }
+    ],
+    "employeeBadge": "Za zaposlenike",
+    "employeeTitle": "Zbog toga će se vaši zaposlenici radovati",
+    "employeeBenefits": [
+      { "title": "Garantirane top-cijene", "body": "Sve ponude nude se po najboljoj dostupnoj cijeni u Švicarskoj. Vaši zaposlenici garantirano štede." },
+      { "title": "Jaki brendovi", "body": "Veliki izbor renomiranih brendova iz tehike, kućanstva, mode, sporta, ljepote, putovanja i slobodnog vremena." },
+      { "title": "Nove ponude svake sedmice", "body": "Sedmično promjenljivi deali donose stalno nove vrhunce — za svaki ukus i svaki budžet." }
+    ],
+    "sortimentBadge": "Asortiman",
+    "sortimentTitle": "Jaki brendovi iz mnogih oblasti",
+    "sortimentSubtitle": "Od tehnike do ljepote — vaši zaposlenici pronalaze top-ponude iz svih životnih oblasti.",
+    "categories": ["Tehnika", "Kućanstvo", "Moda", "Sport", "Ljepota", "Putovanja", "Slobodno vrijeme", "Lifestyle"],
+    "stepsBadge": "Tako jednostavno",
+    "stepsTitle": "U 3 koraka do cilja",
+    "steps": [
+      { "num": "01", "title": "Popuni formular", "body": "Ispuni obrazac za prijavu. Mi se brinemo za sve ostalo — jednostavno i brzo." },
+      { "num": "02", "title": "Dobij pristup", "body": "Nakon aktivacije vaši zaposlenici dobivaju pristup ekskluzivnoj platformi sa svim ponudama." },
+      { "num": "03", "title": "Odmah profitirati", "body": "Vaši zaposlenici svake sedmice otkrivaju nove deale jakih brendova po garantiranim najboljim cijenama." }
+    ],
+    "formBadge": "Počnite sada",
+    "formTitle": "Želite li pristup Brands for Employees?",
+    "formSubtitle": "Ispunite formular — mi preuzimamo sve ostalo.",
+    "formFirstName": "Ime",
+    "formLastName": "Prezime",
+    "formCompany": "Naziv poduzeća",
+    "formEmployees": "Broj zaposlenika",
+    "formEmail": "E-pošta",
+    "formMessage": "Poruka (opcionalno)",
+    "formMessagePlaceholder": "Imate li pitanja ili posebne zahtjeve?",
+    "formSubmit": "Pošalji upit",
+    "formLoading": "Šalje se...",
+    "formSuccessTitle": "Hvala!",
+    "formSuccessBody": "Primili smo vaš upit i javit ćemo se uskoro.",
+    "formError": "Greška pri slanju. Pokušajte ponovo."
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "nav": {
+    "home": "Home",
+    "network": "Netzwerk",
+    "about": "Über uns",
+    "join": "Mitmachen",
+    "contact": "Kontakt",
+    "blog": "News",
+    "member": "Mitglied werden",
+    "dropCommunityHeading": "Community",
+    "dropOrgHeading": "Organisation",
+    "dropCurrentHeading": "Aktuell",
+    "dropMembers": "Mitglieder",
+    "dropMembersSub": "Werde Teil der Community",
+    "dropEvents": "Events",
+    "dropEventsSub": "After-Work & Business-Treffen",
+    "dropGrowth": "Wachstum",
+    "dropGrowthSub": "Chancen und Sichtbarkeit",
+    "dropClub": "Verein",
+    "dropClubSub": "Gemeinnützig & überparteilich",
+    "dropTeam": "Team",
+    "dropTeamSub": "Die Menschen dahinter",
+    "dropStatutes": "Statuten",
+    "dropStatutesSub": "Unsere Vereinsregeln",
+    "dropAbout": "Vision & Mission",
+    "dropAboutSub": "Was uns antreibt",
+    "dropContact": "Kontakt",
+    "dropContactSub": "Schreib uns",
+    "dropCurrentCta": "Jetzt Mitglied werden — kostenlos",
+    "dropNew": "NEU",
+    "dropAboutHeading": "Über uns"
+  },
+  "home": {
+    "hero": {
+      "badge": "Die bosnische Community in der Schweiz",
+      "titleLine1": "Dein Netzwerk",
+      "titleLine2": "für neue",
+      "titleItalic": "Chancen.",
+      "title": "Dein Netzwerk für neue Chancen.",
+      "subtitle": "Vernetze dich mit bosnischen Unternehmer:innen, Fachkräften und Privatpersonen in der Schweiz, tausche Wissen aus und nutze exklusive Vorteile für deine persönliche und berufliche Weiterentwicklung.",
+      "cta": "Mehr erfahren",
+      "ctaJoin": "Mitglied werden",
+      "socialProof": "200+ Mitglieder vertrauen uns"
+    },
+    "quickLinks": {
+      "question": "Möchtest du direkt Mitglied werden?",
+      "join": "Mitglied werden",
+      "about": "Über uns lesen",
+      "events": "Events entdecken"
+    },
+    "network": {
+      "sectionTitle": "Vernetzt, sichtbar und erfolgreich? Kein Problem.",
+      "heading": "Vernetze dich gezielt",
+      "body": "Finde bosnische Unternehmer:innen, Fachkräfte und Gleichgesinnte in der ganzen Schweiz.",
+      "features": ["Events in 5 Kantonen", "Business-Treffen & Speaker", "Digitale Formate"],
+      "cta": "Mehr erfahren",
+      "bannerTitle": "Neugierig, wie alles funktioniert?",
+      "bannerBody": "Ob digital oder vor Ort. Entdecke, wie das Swiss Bosnian Network Menschen in der Schweiz zusammenbringt.",
+      "bannerCta": "Mehr erfahren"
+    },
+    "mission": {
+      "title": "Vielfalt stärken: Gemeinsam für die bosnisch-schweizerische Community",
+      "body": "In unserem Netzwerk steht der Austausch, das gegenseitige Verständnis und die Unterstützung im Mittelpunkt. Egal, ob du Unternehmer:in, Fachkraft oder Privatperson bist – hier findest du einen Ort, an dem du dich einbringen, wachsen und von anderen lernen kannst."
+    },
+    "pillars": {
+      "together": { "title": "gemeinsam.", "body": "Du vernetzt dich mit der Community, um Wissen, Kontakte und Geschäftsmöglichkeiten zu teilen." },
+      "connected": { "title": "verbunden.", "body": "Du profitierst von exklusiven Vorteilen, wie Business-Events, spannenden Deals und starken Rabatten." },
+      "strong": { "title": "stark.", "body": "Du stärkst deine Sichtbarkeit, bekommst Inspiration und neue Chancen für dich oder dein Business." }
+    },
+    "trust": {
+      "title": "200+ Mitglieder. 3 Jahre. 5 Kantone.",
+      "twoCountriesTitle": "Zwei Länder. Eine Community.",
+      "twoCountriesBody": "Schweiz und Bosnien-Herzegowina verbunden durch gemeinsame Werte und Ziele.",
+      "nonprofitTitle": "Gemeinnützig & überparteilich",
+      "nonprofitBody": "Eingetragener Verein in der Schweiz, ehrenamtlich geführt.",
+      "nonprofitCheck": "Keine kommerziellen oder politischen Ziele",
+      "eventsLabel": "Events pro Jahr",
+      "eventsBody": "After-Work, Business-Treffen & Speaker-Sessions",
+      "membersLabel": "Aktive Mitglieder",
+      "membersBody": "Schweizweit vernetzt, täglich wachsend"
+    },
+    "bfe": {
+      "badge": "Exklusiver Mitglieder-Vorteil",
+      "title": "Brands for Employees. Exklusive Vorteile für unsere Mitglieder.",
+      "body": "Als Mitglied des Swiss Bosnian Network profitierst du von attraktiven Mitarbeiterangeboten bekannter Marken — mit Best-Preis-Garantie und wöchentlich wechselnden Deals.",
+      "cta": "Mehr erfahren",
+      "featuresLabel": "Was dich erwartet",
+      "features": [
+        { "title": "Best-Preis-Garantie", "body": "Immer der beste verfügbare Preis für Mitglieder des Swiss Bosnian Network." },
+        { "title": "Wöchentliche Deals", "body": "Jeden Montag neue Angebote von Top-Marken — exklusiv für unsere Community." },
+        { "title": "100+ Marken", "body": "Von Mode über Elektronik bis Reisen — ein breites Sortiment für jeden Geschmack." }
+      ]
+    },
+    "valuesSection": {
+      "badge": "Unsere Werte",
+      "tagline": "Was uns ausmacht.",
+      "body": "Ein Netzwerk aufgebaut auf Vertrauen, Offenheit und gemeinsamer Vision.",
+      "cta": "Über uns",
+      "openTitle": "Offen & inklusiv",
+      "openBody": "Jede:r ist willkommen – unabhängig von Herkunft, Alter oder Lebensweg.",
+      "neutralTitle": "Politisch neutral",
+      "neutralBody": "Fokus auf das Verbindende, nicht auf das Trennende.",
+      "innovativeTitle": "Innovativ",
+      "innovativeBody": "Kreative Ideen und digitale Lösungen für eine lebendige Community.",
+      "transparentTitle": "Transparent",
+      "transparentBody": "Ehrlichkeit und Offenheit als Basis jeder Zusammenarbeit."
+    },
+    "values": {
+      "title": "Unsere Vision für eine starke Community",
+      "open": { "title": "Offen & inklusiv", "body": "Im Swiss Bosnian Network ist jede:r willkommen – unabhängig von Herkunft, Alter, Geschlecht oder Lebensweg." },
+      "neutral": { "title": "Politisch & religiös neutral", "body": "Unser Fokus liegt auf dem Verbindenden, nicht auf dem Trennenden." },
+      "innovative": { "title": "Innovativ & zukunftsorientiert", "body": "Wir denken weiter und setzen auf kreative Ideen und digitale Lösungen." },
+      "trusted": { "title": "Vertrauensvoll & transparent", "body": "Ehrlichkeit, Offenheit und klare Kommunikation sind für uns die Grundlage jeder Zusammenarbeit." }
+    },
+    "stats": {
+      "membersLabel": "Aktive Mitglieder",
+      "eventsLabel": "Events pro Jahr",
+      "cantonsLabel": "Kantone vernetzt",
+      "yearsLabel": "Jahre Community"
+    },
+    "pricing": {
+      "badge": "Mitglied werden",
+      "title": "Wähle deinen Weg",
+      "titleItalic": "in die Community.",
+      "popular": "Beliebt",
+      "plans": [
+        { "name": "Mitglied", "price": "Kostenlos", "period": "", "desc": "Für alle, die Teil der Community sein wollen.", "features": ["Offene Events & Meetups", "Digitale Formate & News", "Community-Austausch"], "cta": "Jetzt anmelden" },
+        { "name": "Gönner:in", "price": "CHF 50.–", "period": "/ Jahr", "desc": "Unterstütze den Verein und profitiere von Vorteilen.", "features": ["Alle Mitglieder-Vorteile", "Exklusive Partnerangebote", "Business-Events Zugang"], "cta": "Gönner werden" },
+        { "name": "Partner:in", "price": "CHF 500.–", "period": "/ Jahr", "desc": "Sichtbarkeit für dein Unternehmen.", "features": ["Sichtbarkeit auf Plattform", "Social Media Präsenz", "Exklusive Events"], "cta": "Partner werden" }
+      ]
+    },
+    "newsletter": {
+      "title": "Abonniere unseren Newsletter",
+      "body": "Erhalte Updates zu Events, Community-News und spannenden Chancen – direkt in dein Postfach.",
+      "placeholder": "Deine E-Mail-Adresse",
+      "cta": "Abonnieren",
+      "success": "Danke! Du hast dich erfolgreich angemeldet.",
+      "tagline": "Bleib auf dem Laufenden.",
+      "body2": "Events, Community-News und Chancen — direkt in dein Postfach.",
+      "placeholder2": "deine@email.ch",
+      "successMsg": "Erfolgreich angemeldet!"
+    }
+  },
+  "about": {
+    "title": "Das Team hinter Swiss Bosnian Network",
+    "subtitle": "Das Swiss Bosnian Network bringt Bosnier:innen in der Schweiz zusammen, um Wissen, Erfahrungen und Chancen zu teilen.",
+    "vision": "Unsere Vision",
+    "visionText": "Wir schaffen eine starke, vernetzte und inspirierende Gemeinschaft, für Bosnier:innen in der Schweiz, die Wissen, Erfahrung und Chancen teilt.",
+    "mission": "Unsere Mission",
+    "missionText": "Das Swiss Bosnian Network verbindet Unternehmer:innen, Fachkräfte und Privatpersonen, um durch gezielten Austausch, wertvolle Partnerschaften und inspirierende Events Mehrwert zu schaffen.",
+    "team": "Wer steckt dahinter?",
+    "joinCta": "Jetzt Mitglied werden",
+    "joinText": "Werde Teil unserer wachsenden Community"
+  },
+  "join": {
+    "title": "Mitmachen",
+    "subtitle": "Wähle die Mitgliedschaft, die zu dir passt",
+    "member": {
+      "title": "Mitglied",
+      "price": "Kostenlos",
+      "features": ["Einladung zu offenen Events & Meetups", "Zugang zu digitalen Formaten & News", "Austausch mit spannenden Persönlichkeiten", "Inspiration, Zugehörigkeit und Vernetzung"],
+      "cta": "Jetzt anmelden"
+    },
+    "goenner": {
+      "title": "Gönner:In",
+      "price": "CHF 50.– / Jahr",
+      "features": ["Exklusive Partnerangebote", "Wertvolle Netzwerkmöglichkeiten", "Inspirierende Events", "Alle Mitglieder-Vorteile"],
+      "cta": "Jetzt Gönner:In werden"
+    },
+    "partner": {
+      "title": "Partner:In",
+      "price": "CHF 500.– / Jahr",
+      "features": ["Sichtbarkeit & Reichweite auf Plattform & Social Media", "Zielgruppen-Targeting in der bosnischen Community", "Netzwerk & Events — exklusive Business-Treffen", "Alle Gönner-Vorteile"],
+      "cta": "Jetzt Partner:In werden"
+    },
+    "memberForm": {
+      "title": "Kostenlose Mitgliedschaft beantragen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "phone": "Telefon (optional)",
+      "company": "Unternehmen (optional)",
+      "submit": "Mitglied werden",
+      "success": "Vielen Dank! Deine Anmeldung wurde erfolgreich übermittelt.",
+      "error": "Fehler beim Senden. Bitte versuche es erneut."
+    }
+  },
+  "faq": {
+    "title": "FAQ – Häufige Fragen",
+    "items": [
+      {
+        "q": "Wer steckt hinter dem Netzwerk?",
+        "a": "Das Swiss Bosnian Network ist ein gemeinnütziger Verein mit Sitz in der Schweiz. Der Verein wird ehrenamtlich geführt und verfolgt keinerlei kommerzielle oder politische Ziele."
+      },
+      {
+        "q": "Was ist eine Gönnerschaft – und wie funktioniert sie?",
+        "a": "Mit einer Gönnerschaft unterstützt du den Verein finanziell und profitierst von verschiedenen Leistungen. Dein Beitrag fliesst direkt in den Ausbau und Betrieb des Netzwerks."
+      },
+      {
+        "q": "Wie kann ich mein Unternehmen sichtbar machen?",
+        "a": "Mit einer Gönnerschaft erhältst du die Möglichkeit, dein Unternehmen auf unserer Plattform sowie auf unseren Social-Media-Kanälen zu präsentieren."
+      },
+      {
+        "q": "Wie kann ich an Events teilnehmen?",
+        "a": "Alle Termine werden frühzeitig auf unserer Website und auf Social Media angekündigt. Die meisten Events sind offen und kostenlos."
+      },
+      {
+        "q": "Ist das Netzwerk politisch oder religiös ausgerichtet?",
+        "a": "Nein. Das Swiss Bosnian Network ist politisch und religiös vollständig neutral. Wir konzentrieren uns auf das Verbindende: Austausch, Wachstum und Gemeinschaft."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Hast du Fragen oder möchtest du mit uns in Kontakt treten?",
+    "name": "Name",
+    "email": "E-Mail",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "send": "Senden",
+    "success": "Vielen Dank! Wir melden uns bald.",
+    "error": "Fehler beim Senden. Bitte versuche es erneut."
+  },
+  "blog": {
+    "title": "News",
+    "subtitle": "News, Insights und Geschichten aus der Community",
+    "readMore": "Weiterlesen",
+    "backToBlog": "Zurück zu News",
+    "published": "Veröffentlicht am",
+    "noPost": "Keine Beiträge vorhanden",
+    "notAvailable": "Noch nicht auf Bosnisch verfügbar"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "subtitle": "Bleibe immer auf dem Laufenden",
+    "email": "E-Mail-Adresse",
+    "firstName": "Vorname (optional)",
+    "subscribe": "Abonnieren",
+    "success": "Erfolgreich abonniert!",
+    "error": "Fehler beim Abonnieren."
+  },
+  "statuten": {
+    "title": "Statuten",
+    "subtitle": "Vereinsstatuten Swiss Bosnian Network"
+  },
+  "impressum": {
+    "title": "Impressum",
+    "association": "Verein",
+    "name": "Swiss Bosnian Network",
+    "address": "Schweiz",
+    "email": "info@swissbosnian-network.ch"
+  },
+  "agbs": {
+    "title": "Allgemeine Geschäftsbedingungen"
+  },
+  "footer": {
+    "menu": "Menü",
+    "useful": "Nützliches",
+    "copyright": "© 2025 Swiss Bosnian Network. Alle Rechte vorbehalten.",
+    "statutes": "Statuten",
+    "imprint": "Impressum",
+    "sitemap": "Sitemap",
+    "agbs": "AGBs",
+    "contactTitle": "Hast du Fragen?",
+    "emailReply": "Wir antworten innerhalb 24h",
+    "location": "Schweiz",
+    "nonprofit": "Gemeinnütziger Verein",
+    "description": "Das Swiss Bosnian Network ist ein gemeinnütziger, ehrenamtlich geführter Verein ohne kommerzielle oder politische Ziele.",
+    "community": "Community",
+    "legal": "Rechtliches",
+    "join": "Mitglied werden",
+    "joinBody": "Werde Teil der bosnischen Community in der Schweiz.",
+    "joinCta": "Jetzt beitreten",
+    "home": "Home",
+    "network": "Netzwerk",
+    "about": "Über uns",
+    "participate": "Mitmachen",
+    "contact": "Kontakt",
+    "news": "News",
+    "events": "Events",
+    "newsletter": "Newsletter",
+    "faq": "FAQ",
+    "brandsForEmployees": "Brands for Employees",
+    "datenschutz": "Datenschutz"
+  },
+  "team": {
+    "members": [
+      { "name": "Hamza", "role": "Präsident", "bio": "Dipl. Betriebswirtschafter HF mit Fokus auf Unternehmensentwicklung und Vereinswesen." },
+      { "name": "Jasmina", "role": "Vizepräsident", "bio": "Executive Master of Business Administration in Marketing Management, Universität Bern." },
+      { "name": "Emir", "role": "Finanzen", "bio": "Finanzplaner mit eidg. Fachausweis, Erfahrung im Finanzwesen und Budgetverantwortung." },
+      { "name": "Anesa", "role": "Social Media & Event Lead", "bio": "Bachelor of Science in Business Administration. Plant und organisiert Events." },
+      { "name": "Dzenan", "role": "Aktuar", "bio": "BSc Betriebsökonom Banking & Finance, verantwortlich für Protokollführung und Mitgliederverwaltung." }
+    ]
+  },
+  "netzwerk": {
+    "heroBadge": "Netzwerk",
+    "heroTitle": "Deine Community\nin der Schweiz.",
+    "heroSubtitle": "Das Swiss Bosnian Network bringt Menschen aus der Schweiz und Bosnien zusammen — digital und vor Ort.",
+    "heroJoin": "Jetzt beitreten",
+    "heroLearn": "Mehr erfahren",
+    "stats": [
+      { "value": "200+", "label": "Mitglieder" },
+      { "value": "15+", "label": "Events / Jahr" },
+      { "value": "5", "label": "Kantone" },
+      { "value": "3", "label": "Jahre" }
+    ],
+    "formatsBadge": "Unsere Formate",
+    "formatsTitle": "Wie das Netzwerk lebt.",
+    "formats": [
+      { "title": "Connect Online", "subtitle": "Virtuell vernetzen & Wissen teilen", "description": "Nutze digitale Treffen und Webinare, um wertvolle Einblicke zu gewinnen, neue Kontakte zu knüpfen und dich mit Expert:innen aus verschiedenen Branchen auszutauschen." },
+      { "title": "Cheers & Connections", "subtitle": "Treffen, Austauschen & Netzwerken", "description": "Bei unseren After-Work-Events stehen Begegnungen im Mittelpunkt. In entspannter Atmosphäre verbinden wir spannende Persönlichkeiten und fördern langfristige Beziehungen." },
+      { "title": "Stage & Story", "subtitle": "Inspirierende Geschichten & grosse Bühnen", "description": "Unsere Live-Events bringen Speaker, Unternehmer:innen und kreative Köpfe zusammen. Ob Panel-Talks, Keynotes oder interaktive Sessions – hier entstehen neue Impulse." }
+    ],
+    "membershipBadge": "Mitgliedschaft",
+    "membershipTitle": "Werde Teil der Community.",
+    "membershipSubtitle": "Offen für alle, die sich vernetzen, austauschen und gemeinsam wachsen möchten.",
+    "memberBadge": "Kostenlos",
+    "memberTitle": "Kostenlose Mitgliedschaft",
+    "memberDesc": "Als Teil unserer Community erhältst du:",
+    "memberFeatures": ["Einladungen zu Events & Meetups", "News & Inspiration aus der Community", "Zugang zu digitalen Formaten"],
+    "memberCta": "Anmelden",
+    "goennerBadge": "CHF 50.– / Jahr",
+    "goennerTitle": "Gönner:in werden",
+    "goennerDesc": "Unterstütze das Netzwerk und sichere dir exklusive Vorteile:",
+    "goennerFeatures": ["Early Access zu allen Events", "Exklusive Partnerangebote & Deals", "Teilnahme an Member-only Events", "Community-Sichtbarkeit & Profil"],
+    "goennerCta": "Gönner:in werden",
+    "whyBadge": "Warum SBN?",
+    "whyTitle": "Mehr als nur ein Netzwerk.",
+    "whyBody": "Das Swiss Bosnian Network ist ein lebendiger Ort der Begegnung — für Menschen, die Schweiz und Bosnien verbinden, wachsen wollen und Gleichgesinnte suchen.",
+    "whyCta": "Mehr über uns",
+    "whyItems": [
+      { "title": "Community", "body": "Ein Ort für alle, die verbinden und wachsen wollen." },
+      { "title": "Zwei Länder", "body": "Schweiz und Bosnien — vereint durch gemeinsame Werte." },
+      { "title": "Energie", "body": "Regelmässige Events und frische Impulse für dein Netzwerk." },
+      { "title": "Gemeinnützig", "body": "Keine Profite, kein Kommerz — nur echter Mehrwert." }
+    ],
+    "ctaTitle": "Werde Teil des Swiss Bosnian Network.",
+    "ctaSubtitle": "Triff spannende Menschen, teile Wissen und wachse gemeinsam.",
+    "ctaButton": "Mitglied werden"
+  },
+  "bfe": {
+    "badge": "Exklusiver Mitgliedervorteil",
+    "heroSubtitle": "Mit Brands for Employees bieten wir unseren Mitgliedern eine attraktive Zusatzleistung für ihre Mitarbeitenden — kostenlos, unverbindlich und ohne Mehraufwand.",
+    "heroJoin": "Jetzt anmelden",
+    "heroMember": "Mitglied werden",
+    "introBadge": "Was ist das?",
+    "introTitle": "Exklusive Vorteile für Ihre Mitarbeitenden",
+    "introBody1": "Über eine exklusive Plattform erhalten Ihre Mitarbeitenden Zugang zu ausgewählten Angeboten bekannter Marken aus zahlreichen Bereichen — zu garantierten Top-Preisen und mit regelmässig wechselnden Aktionen.",
+    "introBody2": "Die Teilnahme ist unkompliziert und wird vollständig abgewickelt, sodass für Ihr Unternehmen kein zusätzlicher organisatorischer Aufwand entsteht.",
+    "introChecks": ["Für alle SBN-Mitglieder kostenlos verfügbar", "Keine Mindestanzahl von Mitarbeitenden", "Vollständige Abwicklung durch uns"],
+    "companyBadge": "Für Unternehmen",
+    "companyTitle": "Daran hat Ihr Unternehmen Freude",
+    "companyBenefits": [
+      { "title": "Ohne Kosten", "body": "Die Nutzung ist für Ihr Unternehmen mit keinerlei Gebühren verbunden. Sie profitieren — vollständig kostenlos." },
+      { "title": "Ohne Bindung", "body": "Es entstehen keine vertraglichen Verpflichtungen oder Voraussetzungen wie Mindestanzahl oder Mindestumsatz." },
+      { "title": "Ohne Mehraufwand", "body": "Die gesamte Kommunikation sowie Abwicklung — von Lieferung über Support bis zu Auswertungen — wird vollständig übernommen." }
+    ],
+    "employeeBadge": "Für Mitarbeitende",
+    "employeeTitle": "Darüber freuen sich Ihre Mitarbeiter",
+    "employeeBenefits": [
+      { "title": "Garantierte Top-Preise", "body": "Alle Angebote werden zum besten verfügbaren Preis in der Schweiz angeboten. Ihre Mitarbeitenden sparen garantiert." },
+      { "title": "Starke Marken", "body": "Eine grosse Auswahl renommierter Marken aus Technik, Haushalt, Fashion, Sport, Beauty, Reisen und Freizeit." },
+      { "title": "Neue Angebote jede Woche", "body": "Wöchentlich wechselnde Deals sorgen laufend für neue Highlights — für jeden Geschmack und jedes Budget." }
+    ],
+    "sortimentBadge": "Sortiment",
+    "sortimentTitle": "Starke Marken aus vielen Bereichen",
+    "sortimentSubtitle": "Von Technik bis Beauty — Ihre Mitarbeitenden finden aus allen Lebensbereichen Top-Angebote.",
+    "categories": ["Technik", "Haushalt", "Fashion", "Sport", "Beauty", "Reisen", "Freizeit", "Lifestyle"],
+    "stepsBadge": "So einfach",
+    "stepsTitle": "In 3 Schritten dabei",
+    "steps": [
+      { "num": "01", "title": "Formular ausfüllen", "body": "Füllen Sie das Anmeldeformular aus. Wir kümmern uns um den Rest — unkompliziert und schnell." },
+      { "num": "02", "title": "Zugang erhalten", "body": "Nach der Aktivierung erhalten Ihre Mitarbeitenden Zugang zur exklusiven Plattform mit allen Angeboten." },
+      { "num": "03", "title": "Sofort profitieren", "body": "Ihre Mitarbeitenden entdecken wöchentlich neue Deals von starken Marken zu garantierten Bestpreisen." }
+    ],
+    "formBadge": "Jetzt starten",
+    "formTitle": "Möchten Sie Zugang zu Brands for Employees?",
+    "formSubtitle": "Füllen Sie das Formular aus — wir übernehmen alles Weitere.",
+    "formFirstName": "Vorname",
+    "formLastName": "Nachname",
+    "formCompany": "Name der Firma",
+    "formEmployees": "Anzahl Mitarbeiter",
+    "formEmail": "E-Mail",
+    "formMessage": "Nachricht (optional)",
+    "formMessagePlaceholder": "Haben Sie Fragen oder besondere Wünsche?",
+    "formSubmit": "Anfrage senden",
+    "formLoading": "Wird gesendet...",
+    "formSuccessTitle": "Vielen Dank!",
+    "formSuccessBody": "Wir haben Ihre Anfrage erhalten und melden uns bald.",
+    "formError": "Fehler beim Senden. Bitte versuche es erneut."
+  }
+}

@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  blogPosts BlogPost[]
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  titleDe     String
+  titleBs     String?
+  contentDe   String
+  contentBs   String?
+  excerptDe   String?
+  excerptBs   String?
+  coverImage  String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  metaTitleDe String?
+  metaTitleBs String?
+  metaDescDe  String?
+  metaDescBs  String?
+  category    String?
+  tags        String?
+  authorId    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  author      User         @relation(fields: [authorId], references: [id])
+  attachments Attachment[]
+}
+
+model Attachment {
+  id         String   @id @default(cuid())
+  filename   String
+  url        String
+  size       Int
+  mimeType   String
+  blogPostId String?
+  createdAt  DateTime @default(now())
+
+  blogPost BlogPost? @relation(fields: [blogPostId], references: [id])
+}
+
+model NewsletterList {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subscribers NewsletterSubscriber[]
+  campaigns   NewsletterCampaign[]
+}
+
+model NewsletterSubscriber {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  firstName        String?
+  lastName         String?
+  subscribed       Boolean  @default(true)
+  unsubscribeToken String   @unique @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  lists      NewsletterList[]
+  sentEmails NewsletterSent[]
+}
+
+model NewsletterCampaign {
+  id          String    @id @default(cuid())
+  subject     String
+  previewText String?
+  headerImage String?
+  content     String
+  footerText  String?
+  status      String    @default("DRAFT")
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  lists      NewsletterList[]
+  sentEmails NewsletterSent[]
+}
+
+model NewsletterSent {
+  id           String    @id @default(cuid())
+  campaignId   String
+  subscriberId String
+  sentAt       DateTime  @default(now())
+  opened       Boolean   @default(false)
+  openedAt     DateTime?
+
+  campaign   NewsletterCampaign   @relation(fields: [campaignId], references: [id])
+  subscriber NewsletterSubscriber @relation(fields: [subscriberId], references: [id])
+
+  @@unique([campaignId, subscriberId])
+}
+
+model Member {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  firstName        String
+  lastName         String
+  phone            String?
+  company          String?
+  memberType       String
+  memberStatus     String    @default("PENDING")
+  stripeCustomerId String?   @unique
+  notes            String?
+  joinedAt         DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  payments Payment[]
+}
+
+model Payment {
+  id              String    @id @default(cuid())
+  memberId        String
+  stripePaymentId String?   @unique
+  stripeSessionId String?
+  amount          Int
+  currency        String    @default("chf")
+  status          String    @default("PENDING")
+  memberType      String
+  periodStart     DateTime?
+  periodEnd       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  member Member @relation(fields: [memberId], references: [id])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id            String    @id @default(cuid())
+  titleDe       String
+  titleBs       String?
+  descriptionDe String?
+  descriptionBs String?
+  date          DateTime
+  endDate       DateTime?
+  location      String?
+  locationUrl   String?
+  color         String    @default("#0D1F6E")
+  published     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
