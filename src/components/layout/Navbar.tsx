@@ -321,7 +321,7 @@ export default function Navbar() {
 
           {/* Center nav links */}
           <div
-            className="hidden lg:flex items-center"
+            className="hidden md:flex items-center"
             style={{ gap: 0 }}
             onMouseLeave={() => {
               setHoveredLink(null)
@@ -397,7 +397,7 @@ export default function Navbar() {
           <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginLeft: 'auto' }}>
 
             {/* Desktop */}
-            <div className="hidden lg:flex items-center" style={{ gap: 10 }}>
+            <div className="hidden md:flex items-center" style={{ gap: 10 }}>
               <LangSwitch locale={locale} />
 
               <div style={{ width: 1, height: 16, background: '#E5E7EB', flexShrink: 0 }} />
@@ -431,7 +431,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile hamburger */}
-            <button className="lg:hidden" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
+            <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
               style={{
                 width: 38, height: 38,
                 display: 'flex', flexDirection: 'column',
