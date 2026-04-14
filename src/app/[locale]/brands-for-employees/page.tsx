@@ -78,27 +78,36 @@ export default function BrandsForEmployeesPage() {
       {/* ── HERO ── */}
       <section className="hero" style={{ minHeight: 'auto', paddingTop: 'clamp(80px,10vw,140px)', paddingBottom: 'clamp(48px,6vw,80px)' }}>
         <div className="container relative z-10">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="badge badge-gold mb-5">
-            {t('badge')}
-          </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1, ease }} className="text-white" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)', maxWidth: 700 }}>
-            Brands for Employees
-          </motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', marginTop: 16, maxWidth: 600 }}>
-            {t('heroSubtitle')}
-          </motion.p>
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, ease }} style={{ marginTop: 36, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#anmeldung" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 8, background: '#C9960A', color: '#0F172A', fontSize: 15, fontWeight: 700, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(201,150,10,0.35)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}>
-              {t('heroJoin')} <ArrowRight size={15} />
-            </a>
-            <Link href={"/mitmachen"} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 8, border: '1.5px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: '#ffffff', fontSize: 15, fontWeight: 600, textDecoration: 'none', transition: 'background 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}>
-              {t('heroMember')}
-            </Link>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 48, alignItems: 'center' }}>
+            {/* Left */}
+            <div>
+              <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }} className="badge badge-gold mb-5">
+                {t('badge')}
+              </motion.div>
+              <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1, ease }} className="text-white" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
+                Brands for Employees.
+              </motion.h1>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ fontSize: 18, color: 'rgba(255,255,255,0.72)', marginTop: 16, maxWidth: 560, lineHeight: 1.7 }}>
+                {t('heroSubtitle')}
+              </motion.p>
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, ease }} style={{ marginTop: 36, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <a href="#anmeldung" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 8, background: '#C9960A', color: '#0F172A', fontSize: 15, fontWeight: 700, textDecoration: 'none', transition: 'transform 0.2s, box-shadow 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(201,150,10,0.35)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}>
+                  {t('heroJoin')} <ArrowRight size={15} />
+                </a>
+                <Link href={"/mitmachen"} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 8, border: '1.5px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: '#ffffff', fontSize: 15, fontWeight: 600, textDecoration: 'none', transition: 'background 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}>
+                  {t('heroMember')}
+                </Link>
+              </motion.div>
+            </div>
+            {/* Right — image */}
+            <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65, delay: 0.2, ease }} className="hidden lg:block">
+              <img src="/brands-hero.webp" alt="Brands for Employees" style={{ width: '100%', height: 'auto', borderRadius: 16, boxShadow: '0 24px 64px rgba(0,0,0,0.3)' }} />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -169,14 +178,14 @@ export default function BrandsForEmployeesPage() {
               const Icon = EMPLOYEE_ICONS[i]
               return (
                 <FadeUp key={b.title} delay={i * 0.1}>
-                  <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderTop: '3px solid #C9960A', borderRadius: 14, padding: '32px 28px', height: '100%', transition: 'background 0.25s' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}>
-                    <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(201,150,10,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-                      <Icon size={22} style={{ color: '#C9960A' }} />
+                  <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderTop: '3px solid #F5C800', borderRadius: 14, padding: '32px 28px', height: '100%', transition: 'background 0.25s' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}>
+                    <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(245,200,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+                      <Icon size={22} style={{ color: '#F5C800' }} />
                     </div>
-                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', marginBottom: 10 }}>{b.title}</h3>
-                    <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>{b.body}</p>
+                    <h3 style={{ fontSize: 18, fontWeight: 600, color: '#ffffff', marginBottom: 10 }}>{b.title}</h3>
+                    <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>{b.body}</p>
                   </div>
                 </FadeUp>
               )
