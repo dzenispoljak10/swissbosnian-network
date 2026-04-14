@@ -299,9 +299,10 @@ export default function Navbar() {
         <div style={{
           maxWidth: 1140, margin: '0 auto', padding: '0 24px',
           width: '100%', height: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1fr auto 1fr',
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
+          position: 'relative',
         }}>
 
           {/* Logo */}
@@ -319,9 +320,9 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Center nav links */}
+          {/* Center nav links — absolutely centered on desktop */}
           <div
-            className="hidden md:flex items-center"
+            className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2"
             style={{ gap: 0 }}
             onMouseLeave={() => {
               setHoveredLink(null)
