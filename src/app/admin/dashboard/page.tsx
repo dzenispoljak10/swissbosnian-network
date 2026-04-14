@@ -1,80 +1,157 @@
 import { prisma } from '@/lib/prisma'
-import { Users, FileText, Mail, CreditCard } from 'lucide-react'
-import { formatCurrency } from '@/lib/utils'
+import Link from 'next/link'
+import { Newspaper, Calendar, Send, Users, Edit } from 'lucide-react'
 
 export default async function DashboardPage() {
-  const [memberCount, subscriberCount, postCount, payments] = await Promise.all([
-    prisma.member.count({ where: { memberStatus: 'ACTIVE' } }),
-    prisma.newsletterSubscriber.count({ where: { subscribed: true } }),
+  const [
+    blogTotal,
+    blogPublished,
+    activeEvents,
+    newsletterSubs,
+    activeMembers,
+    recentPosts,
+    upcomingEvents,
+  ] = await Promise.all([
+    prisma.blogPost.count(),
     prisma.blogPost.count({ where: { published: true } }),
-    prisma.payment.findMany({
-      where: {
-        status: 'COMPLETED',
-        createdAt: { gte: new Date(new Date().setMonth(new Date().getMonth() - 1)) },
-      },
-      select: { amount: true },
+    prisma.event.count({ where: { published: true } }),
+    prisma.newsletterSubscriber.count({ where: { subscribed: true } }),
+    prisma.member.count({ where: { memberStatus: 'ACTIVE' } }),
+    prisma.blogPost.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 5,
+      select: { id: true, titleDe: true, published: true, createdAt: true, category: true },
+    }),
+    prisma.event.findMany({
+      where: { date: { gte: new Date() } },
+      orderBy: { date: 'asc' },
+      take: 5,
+      select: { id: true, titleDe: true, date: true, location: true, color: true },
     }),
   ])
 
-  const monthlyRevenue = payments.reduce((sum, p) => sum + p.amount, 0)
-
-  const recentMembers = await prisma.member.findMany({
-    orderBy: { joinedAt: 'desc' },
-    take: 5,
-    select: { firstName: true, lastName: true, email: true, memberType: true, memberStatus: true, joinedAt: true },
-  })
-
   const stats = [
-    { label: 'Aktive Mitglieder', value: memberCount, icon: Users, color: 'text-brand-blue', bg: 'bg-brand-blue/10' },
-    { label: 'Newsletter-Abonnenten', value: subscriberCount, icon: Mail, color: 'text-purple-600', bg: 'bg-purple-100' },
-    { label: 'Veröffentlichte Beiträge', value: postCount, icon: FileText, color: 'text-green-600', bg: 'bg-green-100' },
-    { label: 'Einnahmen (30 Tage)', value: formatCurrency(monthlyRevenue), icon: CreditCard, color: 'text-amber-600', bg: 'bg-amber-100' },
+    {
+      label: 'Blog Einträge',
+      value: blogTotal,
+      sub: `${blogPublished} publiziert`,
+      icon: Newspaper,
+      iconColor: '#0D1F6E',
+      iconBg: 'rgba(13,31,110,0.08)',
+    },
+    {
+      label: 'Aktive Events',
+      value: activeEvents,
+      sub: null,
+      icon: Calendar,
+      iconColor: '#C9960A',
+      iconBg: 'rgba(245,200,0,0.12)',
+    },
+    {
+      label: 'Newsletter Abonnenten',
+      value: newsletterSubs,
+      sub: null,
+      icon: Send,
+      iconColor: '#0D1F6E',
+      iconBg: 'rgba(13,31,110,0.08)',
+    },
+    {
+      label: 'Aktive Mitglieder',
+      value: activeMembers,
+      sub: null,
+      icon: Users,
+      iconColor: '#0D1F6E',
+      iconBg: 'rgba(13,31,110,0.08)',
+    },
   ]
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900 mb-8">Dashboard</h1>
+      <h1 style={{ fontSize: 22, fontWeight: 800, color: '#0F172A', marginBottom: 24 }}>Dashboard</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
-        {stats.map(({ label, value, icon: Icon, color, bg }) => (
-          <div key={label} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-gray-500 font-medium">{label}</span>
-              <div className={`${bg} p-2 rounded-xl`}>
-                <Icon className={`h-5 w-5 ${color}`} />
+      {/* Stats Cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 32 }}>
+        {stats.map(({ label, value, sub, icon: Icon, iconColor, iconBg }) => (
+          <div key={label} style={{ background: '#ffffff', border: '1px solid #E5E7EB', borderRadius: 12, padding: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+              <div style={{ width: 40, height: 40, borderRadius: 10, background: iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon size={20} style={{ color: iconColor }} />
               </div>
             </div>
-            <div className="text-3xl font-bold text-neutral-900">{value}</div>
+            <div style={{ fontSize: 36, fontWeight: 800, color: '#0D1F6E', lineHeight: 1 }}>{value}</div>
+            <div style={{ fontSize: 13, color: '#6B7280', marginTop: 4 }}>{label}</div>
+            {sub && <div style={{ fontSize: 12, color: '#9CA3AF', marginTop: 8 }}>{sub}</div>}
           </div>
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-        <h2 className="font-bold text-lg text-neutral-900 mb-4">Neue Mitglieder</h2>
-        {recentMembers.length === 0 ? (
-          <p className="text-gray-400 text-sm">Noch keine Mitglieder</p>
-        ) : (
-          <div className="space-y-3">
-            {recentMembers.map((m, i) => (
-              <div key={i} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
-                <div>
-                  <p className="font-medium text-sm text-neutral-900">{m.firstName} {m.lastName}</p>
-                  <p className="text-xs text-gray-400">{m.email}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs bg-brand-blue/10 text-brand-blue px-2 py-0.5 rounded-full font-medium">
-                    {m.memberType}
-                  </span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                    m.memberStatus === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {m.memberStatus}
-                  </span>
-                </div>
-              </div>
-            ))}
+      {/* Two columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+
+        {/* Recent Blog Posts */}
+        <div style={{ background: '#ffffff', border: '1px solid #E5E7EB', borderRadius: 12, overflow: 'hidden' }}>
+          <div style={{ padding: '20px 24px', borderBottom: '1px solid #F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <h2 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A' }}>Neueste Einträge</h2>
+            <Link href="/admin/blog/new" style={{ fontSize: 12, fontWeight: 600, color: '#0D1F6E', textDecoration: 'none' }}>+ Neu</Link>
           </div>
-        )}
+          {recentPosts.length === 0 ? (
+            <div style={{ padding: 32, textAlign: 'center', color: '#9CA3AF', fontSize: 13 }}>Noch keine Einträge</div>
+          ) : (
+            <div>
+              {recentPosts.map(post => (
+                <div key={post.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderBottom: '1px solid #F9FAFB' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: '#0F172A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 200 }}>{post.titleDe}</div>
+                    <div style={{ fontSize: 11, color: '#9CA3AF', marginTop: 2 }}>
+                      {post.createdAt.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                    <span style={{
+                      fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 20,
+                      background: post.published ? 'rgba(34,197,94,0.1)' : '#F3F4F6',
+                      color: post.published ? '#15803d' : '#6B7280',
+                    }}>
+                      {post.published ? 'Publiziert' : 'Entwurf'}
+                    </span>
+                    <Link href={`/admin/blog/${post.id}/edit`} style={{ color: '#0D1F6E', lineHeight: 0 }}>
+                      <Edit size={14} />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Upcoming Events */}
+        <div style={{ background: '#ffffff', border: '1px solid #E5E7EB', borderRadius: 12, overflow: 'hidden' }}>
+          <div style={{ padding: '20px 24px', borderBottom: '1px solid #F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <h2 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A' }}>Nächste Events</h2>
+            <Link href="/admin/events/new" style={{ fontSize: 12, fontWeight: 600, color: '#0D1F6E', textDecoration: 'none' }}>+ Neu</Link>
+          </div>
+          {upcomingEvents.length === 0 ? (
+            <div style={{ padding: 32, textAlign: 'center', color: '#9CA3AF', fontSize: 13 }}>Keine kommenden Events</div>
+          ) : (
+            <div>
+              {upcomingEvents.map(event => (
+                <div key={event.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 24px', borderBottom: '1px solid #F9FAFB' }}>
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: event.color, flexShrink: 0, display: 'inline-block' }} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: '#0F172A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.titleDe}</div>
+                    <div style={{ fontSize: 11, color: '#9CA3AF', marginTop: 2 }}>
+                      {event.date.toLocaleDateString('de-CH', { weekday: 'short', day: 'numeric', month: 'short' })}
+                      {event.location && ` · ${event.location}`}
+                    </div>
+                  </div>
+                  <Link href={`/admin/events/${event.id}/edit`} style={{ color: '#0D1F6E', lineHeight: 0, flexShrink: 0 }}>
+                    <Edit size={14} />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

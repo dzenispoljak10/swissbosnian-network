@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 const PRESET_COLORS = [
   { value: '#0D1F6E', label: 'Navy' },
@@ -81,11 +82,14 @@ export default function EventForm({ event }: { event?: EventData }) {
     })
 
     if (res.ok) {
+      toast.success('Event gespeichert')
       router.push('/admin/events')
       router.refresh()
     } else {
       const data = await res.json()
-      setError(data.error ?? 'Fehler beim Speichern.')
+      const msg = data.error ?? 'Fehler beim Speichern.'
+      setError(msg)
+      toast.error(msg)
       setLoading(false)
     }
   }

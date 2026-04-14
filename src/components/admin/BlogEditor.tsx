@@ -9,6 +9,7 @@ import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
 import { slugify } from '@/lib/utils'
 import { Bold, Italic, List, Heading2, Image as ImageIcon, Link as LinkIcon } from 'lucide-react'
+import toast from 'react-hot-toast'
 
 type BlogPost = {
   id?: string
@@ -129,14 +130,18 @@ export default function BlogEditor({ initialPost }: { initialPost?: Partial<Blog
         body: JSON.stringify(post),
       })
       if (res.ok) {
+        toast.success('Gespeichert')
         router.push('/admin/blog')
         router.refresh()
       } else {
         const data = await res.json()
-        setError(data.error ?? 'Fehler beim Speichern')
+        const msg = data.error ?? 'Fehler beim Speichern'
+        setError(msg)
+        toast.error(msg)
       }
     } catch {
       setError('Netzwerkfehler')
+      toast.error('Netzwerkfehler')
     } finally {
       setLoading(false)
     }

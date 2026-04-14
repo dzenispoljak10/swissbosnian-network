@@ -1,8 +1,9 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { Plus, Edit, Eye, EyeOff } from 'lucide-react'
+import { Plus, Edit } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 import BlogToggleButton from '@/components/admin/BlogToggleButton'
+import BlogDeleteButton from '@/components/admin/BlogDeleteButton'
 
 export default async function AdminBlogPage() {
   const posts = await prisma.blogPost.findMany({
@@ -62,12 +63,15 @@ export default async function AdminBlogPage() {
                     <BlogToggleButton postId={post.id} published={post.published} />
                   </td>
                   <td className="px-6 py-4">
-                    <Link
-                      href={`/admin/blog/${post.id}/edit`}
-                      className="text-brand-blue hover:text-brand-blue-dark transition-colors"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Link>
+                    <div className="flex items-center gap-3 justify-end">
+                      <Link
+                        href={`/admin/blog/${post.id}/edit`}
+                        className="text-brand-blue hover:text-brand-blue-dark transition-colors"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Link>
+                      <BlogDeleteButton postId={post.id} />
+                    </div>
                   </td>
                 </tr>
               ))}

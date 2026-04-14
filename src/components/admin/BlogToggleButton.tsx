@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export default function BlogToggleButton({ postId, published }: { postId: string; published: boolean }) {
   const [isPublished, setIsPublished] = useState(published)
@@ -15,7 +16,10 @@ export default function BlogToggleButton({ postId, published }: { postId: string
       const res = await fetch(`/api/admin/blog/${postId}/toggle`, { method: 'PATCH' })
       if (res.ok) {
         setIsPublished(!isPublished)
+        toast.success(isPublished ? 'Als Entwurf gespeichert' : 'Veröffentlicht')
         router.refresh()
+      } else {
+        toast.error('Fehler beim Aktualisieren')
       }
     } finally {
       setLoading(false)

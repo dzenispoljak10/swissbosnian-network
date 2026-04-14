@@ -5,17 +5,17 @@ import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-export default function EventDeleteButton({ eventId }: { eventId: string }) {
-  const router = useRouter()
+export default function BlogDeleteButton({ postId }: { postId: string }) {
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   async function handleDelete() {
-    if (!confirm('Event wirklich löschen?')) return
+    if (!confirm('Beitrag wirklich löschen?')) return
     setLoading(true)
     try {
-      const res = await fetch(`/api/admin/events/${eventId}`, { method: 'DELETE' })
+      const res = await fetch(`/api/admin/blog/${postId}`, { method: 'DELETE' })
       if (res.ok) {
-        toast.success('Event gelöscht')
+        toast.success('Beitrag gelöscht')
         router.refresh()
       } else {
         toast.error('Fehler beim Löschen')
@@ -32,6 +32,7 @@ export default function EventDeleteButton({ eventId }: { eventId: string }) {
       onClick={handleDelete}
       disabled={loading}
       className="text-red-400 hover:text-red-600 transition-colors disabled:opacity-50"
+      title="Löschen"
     >
       <Trash2 className="h-4 w-4" />
     </button>
