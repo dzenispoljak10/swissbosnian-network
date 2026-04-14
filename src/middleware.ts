@@ -14,12 +14,16 @@ export default auth((req) => {
   // Admin routes: skip intl, check auth (except login page)
   if (pathname.startsWith('/admin')) {
     if (pathname === '/admin/login' || pathname === '/admin') {
-      return NextResponse.next()
+      const res = NextResponse.next()
+      res.headers.set('x-pathname', pathname)
+      return res
     }
     if (!req.auth) {
       return NextResponse.redirect(new URL('/admin/login', req.url))
     }
-    return NextResponse.next()
+    const res = NextResponse.next()
+    res.headers.set('x-pathname', pathname)
+    return res
   }
 
   // Public routes: apply i18n

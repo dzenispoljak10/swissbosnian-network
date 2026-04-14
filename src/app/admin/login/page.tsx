@@ -1,70 +1,87 @@
 'use client'
 
-import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
-export default function AdminLoginPage() {
-  const [form, setForm] = useState({ email: '', password: '' })
+export default function LoginPage() {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
-  async function handleSubmit(e: React.FormEvent) {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const res = await signIn('credentials', {
-      email: form.email,
-      password: form.password,
+
+    const result = await signIn('credentials', {
+      email,
+      password,
       redirect: false,
     })
-    setLoading(false)
-    if (res?.ok) {
-      router.push('/admin/dashboard')
+
+    if (result?.error) {
+      setError('E-Mail oder Passwort falsch')
+      setLoading(false)
     } else {
-      setError('Ungültige E-Mail oder Passwort')
+      router.push('/admin/dashboard')
+      router.refresh()
     }
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-neutral-900">Swiss Bosnian Network</h1>
-          <p className="text-gray-500 text-sm mt-1">Admin Login</p>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F9FAFB' }}>
+      <div style={{ background: 'white', borderRadius: 16, padding: 48, width: '100%', maxWidth: 420, border: '1px solid #E5E7EB', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{ fontSize: 20, fontWeight: 800, color: '#0D1F6E' }}>
+            Swiss Bosnian <span style={{ color: '#C9960A' }}>Network</span>
+          </div>
+          <div style={{ fontSize: 14, color: '#6B7280', marginTop: 6 }}>Admin Dashboard</div>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">E-Mail</label>
+
+        <form onSubmit={handleLogin}>
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>
+              E-Mail
+            </label>
             <input
               type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
-              placeholder="admin@example.com"
+              autoComplete="email"
+              style={{ width: '100%', padding: '10px 14px', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 15, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' }}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Passwort</label>
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>
+              Passwort
+            </label>
             <input
               type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               required
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              autoComplete="current-password"
+              style={{ width: '100%', padding: '10px 14px', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 15, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' }}
             />
           </div>
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700">
+            <div style={{ color: '#CC1C1C', fontSize: 13, marginBottom: 16, textAlign: 'center', background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 8, padding: '8px 12px' }}>
               {error}
             </div>
           )}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-blue text-white py-3.5 rounded-xl font-semibold hover:bg-brand-blue-dark transition-colors disabled:opacity-70"
+            style={{
+              width: '100%', background: '#0D1F6E', color: 'white', border: 'none',
+              borderRadius: 8, padding: '12px', fontSize: 15, fontWeight: 600,
+              cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1,
+              fontFamily: 'inherit', transition: 'opacity 0.2s',
+            }}
           >
             {loading ? 'Anmelden...' : 'Anmelden'}
           </button>

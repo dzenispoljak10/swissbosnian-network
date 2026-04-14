@@ -1,5 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 
 export const metadata = {
@@ -16,6 +17,15 @@ function formatDateDE(date: Date): string {
 }
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const h = await headers()
+  const pathname = h.get('x-pathname') ?? ''
+  const isLoginPage = pathname === '/admin/login' || pathname === '/admin'
+
+  // Login page: no sidebar, no session needed
+  if (isLoginPage) {
+    return <SessionProvider>{children}</SessionProvider>
+  }
+
   const session = await auth()
   const userName = session?.user?.name ?? 'Admin'
   const today = formatDateDE(new Date())
