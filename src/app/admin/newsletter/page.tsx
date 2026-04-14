@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { Plus, Users, Mail } from 'lucide-react'
+import { Plus, Users, Pencil } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
+import CampaignDeleteButton from '@/components/admin/newsletter/CampaignDeleteButton'
 
 export default async function AdminNewsletterPage() {
   const [lists, campaigns, subscriberCount] = await Promise.all([
@@ -11,7 +12,7 @@ export default async function AdminNewsletterPage() {
     }),
     prisma.newsletterCampaign.findMany({
       orderBy: { createdAt: 'desc' },
-      take: 10,
+      take: 20,
       include: { _count: { select: { sentEmails: true } } },
     }),
     prisma.newsletterSubscriber.count({ where: { subscribed: true } }),
@@ -77,6 +78,7 @@ export default async function AdminNewsletterPage() {
                 <th className="text-left text-xs font-semibold text-gray-500 px-6 py-3 uppercase tracking-wider hidden md:table-cell">Status</th>
                 <th className="text-left text-xs font-semibold text-gray-500 px-6 py-3 uppercase tracking-wider hidden md:table-cell">Gesendet</th>
                 <th className="text-left text-xs font-semibold text-gray-500 px-6 py-3 uppercase tracking-wider hidden lg:table-cell">Datum</th>
+                <th className="text-right text-xs font-semibold text-gray-500 px-6 py-3 uppercase tracking-wider">Aktionen</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -89,11 +91,22 @@ export default async function AdminNewsletterPage() {
                       c.status === 'DRAFT' ? 'bg-gray-100 text-gray-600' :
                       'bg-yellow-100 text-yellow-700'
                     }`}>
-                      {c.status}
+                      {c.status === 'SENT' ? 'Gesendet' : c.status === 'DRAFT' ? 'Entwurf' : c.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500 hidden md:table-cell">{c._count.sentEmails}</td>
                   <td className="px-6 py-4 text-sm text-gray-400 hidden lg:table-cell">{formatDate(c.createdAt)}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <Link
+                        href={`/admin/newsletter/${c.id}/edit`}
+                        className="flex items-center gap-1 text-xs text-brand-blue font-semibold hover:underline"
+                      >
+                        <Pencil className="h-3.5 w-3.5" /> Bearbeiten
+                      </Link>
+                      <CampaignDeleteButton id={c.id} />
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

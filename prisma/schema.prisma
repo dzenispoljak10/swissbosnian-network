@@ -83,16 +83,18 @@ model NewsletterSubscriber {
 }
 
 model NewsletterCampaign {
-  id          String    @id @default(cuid())
-  subject     String
-  previewText String?
-  headerImage String?
-  content     String
-  footerText  String?
-  status      String    @default("DRAFT")
-  sentAt      DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id           String    @id @default(cuid())
+  subject      String
+  previewText  String?
+  headerImage  String?
+  content      String    @default("")
+  footerText   String?
+  blocks       Json?
+  globalStyles Json?
+  status       String    @default("DRAFT")
+  sentAt       DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   lists      NewsletterList[]
   sentEmails NewsletterSent[]
