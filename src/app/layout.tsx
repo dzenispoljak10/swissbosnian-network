@@ -11,6 +11,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Swiss Bosnian Network',
   description: 'Vernetze dich mit der bosnischen Community in der Schweiz.',
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-touch-icon.png',
+    shortcut: '/icon.png',
+  },
 }
 
 export default function RootLayout({
