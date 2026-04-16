@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: 'Swiss Bosnian Network',
   description: 'Vernetze dich mit der bosnischen Community in der Schweiz.',
   icons: {
-    icon: '/icon.png',
+    icon: '/favicon.png',
     apple: '/apple-touch-icon.png',
-    shortcut: '/icon.png',
+    shortcut: '/favicon.png',
   },
 }
 
