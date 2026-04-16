@@ -373,5 +373,61 @@
     "formSuccessTitle": "Hvala!",
     "formSuccessBody": "Primili smo vaš upit i javit ćemo se uskoro.",
     "formError": "Greška pri slanju. Pokušajte ponovo."
+  },
+  "mitmachen": {
+    "hero": {
+      "badge": "Postani član",
+      "title": "Postani dio zajednice.",
+      "subtitle": "Odaberi članstvo koje ti odgovara i postani dio bosanske zajednice u Švicarskoj."
+    },
+    "plans": {
+      "free": {
+        "name": "Član",
+        "price": "Besplatno",
+        "description": "Za sve koji žele biti dio zajednice.",
+        "features": ["Otvoreni eventi i meetupi", "Community newsletter", "Digitalni formati i novosti", "Pristup mreži"],
+        "cta": "Pridruži se besplatno"
+      },
+      "goenner": {
+        "name": "Podupiratelj/ica",
+        "price": "CHF 50.–",
+        "period": "/ godina",
+        "description": "Podrži udrugu i iskoristi ekskluzivne prednosti.",
+        "features": ["Sve prednosti člana", "Pristup Brands for Employees", "Ekskluzivni business eventi", "Nominalno spominjanje"],
+        "cta": "Postani podupiratelj/ica"
+      },
+      "partner": {
+        "name": "Partner/ica",
+        "price": "CHF 500.–",
+        "period": "/ godina",
+        "description": "Maksimalna vidljivost za tvoju kompaniju.",
+        "features": ["Sve prednosti podupiratelja", "Logo na web stranici", "Prisutnost na društvenim mrežama", "Ekskluzivni partner eventi", "Direktan kontakt s upravom"],
+        "cta": "Postani partner/ica"
+      }
+    },
+    "form": {
+      "title": "Osobni podaci",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "email": "E-mail adresa",
+      "firstNamePlaceholder": "Tvoje ime",
+      "lastNamePlaceholder": "Tvoje prezime",
+      "emailPlaceholder": "tvoj@email.ch",
+      "required": "Obavezno polje",
+      "invalidEmail": "Nevažeća e-mail adresa",
+      "processing": "Obrada u toku...",
+      "securePayment": "Sigurno plaćanje putem Payrexx",
+      "cancel": "Odustani"
+    },
+    "success": {
+      "title": "Plaćanje uspješno!",
+      "subtitle": "Dobrodošli u Swiss Bosnian Network. Radujemo se vašem dolasku!",
+      "cta": "Na početnu stranicu"
+    },
+    "error": {
+      "title": "Plaćanje neuspješno",
+      "subtitle": "Molimo pokušajte ponovo ili nas kontaktirajte.",
+      "cta": "Pokušaj ponovo"
+    }
   }
 }

@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
 
     const status = transaction.status
     const email = transaction?.contact?.email
-    const firstName = transaction?.contact?.firstname
-    const lastName = transaction?.contact?.lastname
+    const firstName = transaction?.contact?.firstname ?? transaction?.contact?.forename ?? ''
+    const lastName = transaction?.contact?.lastname ?? transaction?.contact?.surname ?? ''
     const amount = transaction?.amount / 100
     const referenceId = transaction?.referenceId || transaction?.invoice?.referenceId || ''
 
@@ -30,8 +30,8 @@ export async function POST(req: NextRequest) {
       await prisma.member.create({
         data: {
           email,
-          firstName: firstName ?? '',
-          lastName: lastName ?? '',
+          firstName,
+          lastName,
           memberType,
           memberStatus: 'ACTIVE',
           paidAt: new Date(),

@@ -39,7 +39,11 @@
       "Bash(git remote:*)",
       "Bash(git push:*)",
       "Bash(git commit:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npx tsx *)",
+      "Bash(cp public/logo.png public/icon.png)",
+      "Bash(cp public/logo.png public/apple-touch-icon.png)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mitmachen','NOT FOUND'\\), ensure_ascii=False, indent=2\\)\\)\")"
     ]
   }
 }

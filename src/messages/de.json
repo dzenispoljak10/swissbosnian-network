@@ -388,5 +388,61 @@
     "formSuccessTitle": "Vielen Dank!",
     "formSuccessBody": "Wir haben Ihre Anfrage erhalten und melden uns bald.",
     "formError": "Fehler beim Senden. Bitte versuche es erneut."
+  },
+  "mitmachen": {
+    "hero": {
+      "badge": "Mitglied werden",
+      "title": "Werde Teil der Community.",
+      "subtitle": "Wähle die Mitgliedschaft die zu dir passt und werde Teil der bosnischen Community in der Schweiz."
+    },
+    "plans": {
+      "free": {
+        "name": "Mitglied",
+        "price": "Kostenlos",
+        "description": "Für alle die Teil der Community sein wollen.",
+        "features": ["Offene Events & Meetups", "Community-Newsletter", "Digitale Formate & News", "Netzwerk-Zugang"],
+        "cta": "Kostenlos beitreten"
+      },
+      "goenner": {
+        "name": "Gönner:in",
+        "price": "CHF 50.–",
+        "period": "/ Jahr",
+        "description": "Unterstütze den Verein und profitiere von exklusiven Vorteilen.",
+        "features": ["Alle Mitglieder-Vorteile", "Brands for Employees Zugang", "Exklusive Business-Events", "Namentliche Erwähnung"],
+        "cta": "Gönner werden"
+      },
+      "partner": {
+        "name": "Partner:in",
+        "price": "CHF 500.–",
+        "period": "/ Jahr",
+        "description": "Maximale Sichtbarkeit für dein Unternehmen.",
+        "features": ["Alle Gönner-Vorteile", "Logo auf Website", "Social Media Präsenz", "Exklusive Partner-Events", "Direkter Kontakt zum Vorstand"],
+        "cta": "Partner werden"
+      }
+    },
+    "form": {
+      "title": "Persönliche Angaben",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "firstNamePlaceholder": "Dein Vorname",
+      "lastNamePlaceholder": "Dein Nachname",
+      "emailPlaceholder": "deine@email.ch",
+      "required": "Pflichtfeld",
+      "invalidEmail": "Ungültige E-Mail-Adresse",
+      "processing": "Wird verarbeitet...",
+      "securePayment": "Sichere Zahlung via Payrexx",
+      "cancel": "Abbrechen"
+    },
+    "success": {
+      "title": "Zahlung erfolgreich!",
+      "subtitle": "Willkommen im Swiss Bosnian Network. Wir freuen uns auf dich!",
+      "cta": "Zur Startseite"
+    },
+    "error": {
+      "title": "Zahlung fehlgeschlagen",
+      "subtitle": "Bitte versuche es erneut oder kontaktiere uns.",
+      "cta": "Erneut versuchen"
+    }
   }
 }
