@@ -30,36 +30,48 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: 'Payrexx nicht konfiguriert.' }, { status: 500 })
     }
 
-    const params = new URLSearchParams()
-    params.append('amount', String(amount * 100))
-    params.append('currency', 'CHF')
-    params.append('purpose', purposes[memberType])
-    params.append('successRedirect', `https://www.swissbosnian-network.ch/de/mitmachen?success=true`)
-    params.append('failedRedirect', `https://www.swissbosnian-network.ch/de/mitmachen?success=false`)
-    params.append('referenceId', referenceId)
-    params.append('fields[email][value]', email)
-    params.append('fields[email][mandatory]', '1')
-    params.append('fields[forename][value]', firstName)
-    params.append('fields[forename][mandatory]', '1')
-    params.append('fields[surname][value]', lastName)
-    params.append('fields[surname][mandatory]', '1')
+    const successUrl = `https://www.swissbosnian-network.ch/de/mitmachen?success=true`
+    const failedUrl = `https://www.swissbosnian-network.ch/de/mitmachen?success=false`
 
+    const paramsForSignature = new URLSearchParams()
+    paramsForSignature.append('amount', String(amount * 100))
+    paramsForSignature.append('currency', 'CHF')
+    paramsForSignature.append('purpose', purposes[memberType])
+    paramsForSignature.append('successRedirect', successUrl)
+    paramsForSignature.append('failedRedirect', failedUrl)
+    paramsForSignature.append('referenceId', referenceId)
+    paramsForSignature.append('fields[email][value]', email)
+    paramsForSignature.append('fields[email][mandatory]', '1')
+    paramsForSignature.append('fields[forename][value]', firstName)
+    paramsForSignature.append('fields[forename][mandatory]', '1')
+    paramsForSignature.append('fields[surname][value]', lastName)
+    paramsForSignature.append('fields[surname][mandatory]', '1')
+
+    const queryString = paramsForSignature.toString()
     const signature = crypto
       .createHmac('sha256', apiKey)
-      .update(params.toString())
+      .update(queryString)
       .digest('base64')
-    params.append('ApiSignature', signature)
+
+    const finalParams = new URLSearchParams(queryString)
+    finalParams.append('ApiSignature', signature)
+
+    console.log('Payrexx request params:', queryString)
 
     const response = await fetch(
       `https://api.payrexx.com/v1.0/Gateway/?instance=${instance}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
+        body: finalParams.toString(),
       }
     )
 
+    console.log('Payrexx response status:', response.status)
+
     const data = await response.json()
+
+    console.log('Payrexx response body:', JSON.stringify(data))
 
     if (!data?.data?.[0]?.link) {
       console.error('Payrexx error:', JSON.stringify(data))
