@@ -125,6 +125,8 @@ model Member {
   memberStatus     String    @default("PENDING")
   stripeCustomerId String?   @unique
   notes            String?
+  paidAt           DateTime?
+  amount           Float?
   joinedAt         DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
