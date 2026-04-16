@@ -1,40 +1,43 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { z } from 'zod'
-
-const schema = z.object({
-  email: z.string().email(),
-  firstName: z.string().optional(),
-})
+import { NextRequest } from 'next/server'
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const parsed = schema.safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json({ error: 'Ungültige E-Mail-Adresse' }, { status: 400 })
+    const { firstName, lastName, email } = await req.json()
+
+    if (!firstName?.trim() || !lastName?.trim() || !email?.trim()) {
+      return Response.json({ error: 'Alle Felder sind Pflicht.' }, { status: 400 })
     }
 
-    const { email, firstName } = parsed.data
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return Response.json({ error: 'Ungültige E-Mail-Adresse.' }, { status: 400 })
+    }
+
+    const existing = await prisma.newsletterSubscriber.findUnique({
+      where: { email: email.toLowerCase().trim() }
+    })
+
+    if (existing) {
+      return Response.json({ error: 'Diese E-Mail ist bereits angemeldet.' }, { status: 409 })
+    }
 
     const allList = await prisma.newsletterList.findFirst({
-      where: { name: 'Alle Abonnenten' },
+      where: { id: 'all-subscribers' }
     })
 
-    const subscriber = await prisma.newsletterSubscriber.upsert({
-      where: { email },
-      update: { subscribed: true, firstName: firstName ?? undefined },
-      create: {
-        email,
-        firstName,
-        subscribed: true,
+    const subscriber = await prisma.newsletterSubscriber.create({
+      data: {
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: email.toLowerCase().trim(),
         lists: allList ? { connect: { id: allList.id } } : undefined,
-      },
+      }
     })
 
-    return NextResponse.json({ success: true, id: subscriber.id })
+    return Response.json({ success: true, id: subscriber.id }, { status: 201 })
   } catch (error) {
     console.error('Newsletter subscribe error:', error)
-    return NextResponse.json({ error: 'Interner Fehler' }, { status: 500 })
+    return Response.json({ error: 'Fehler beim Speichern.' }, { status: 500 })
   }
 }

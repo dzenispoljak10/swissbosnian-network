@@ -7,8 +7,8 @@ const schema = z.object({
   subscribers: z.array(
     z.object({
       email: z.string().email(),
-      firstName: z.string().optional(),
-      lastName: z.string().optional(),
+      firstName: z.string().default(''),
+      lastName: z.string().default(''),
     })
   ),
 })

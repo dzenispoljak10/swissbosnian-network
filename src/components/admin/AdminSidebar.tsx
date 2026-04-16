@@ -13,20 +13,29 @@ import {
   Settings,
   LogOut,
   ExternalLink,
+  List,
+  UserCheck,
 } from 'lucide-react'
 
 const navItems = [
   { href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/admin/blog', icon: Newspaper, label: 'Blog / News' },
   { href: '/admin/events', icon: Calendar, label: 'Events' },
-  { href: '/admin/newsletter', icon: Send, label: 'Newsletter' },
   { href: '/admin/members', icon: Users, label: 'Mitglieder' },
   { href: '/admin/payments', icon: CreditCard, label: 'Zahlungen' },
   { href: '/admin/settings', icon: Settings, label: 'Einstellungen' },
 ]
 
+const newsletterItems = [
+  { href: '/admin/newsletter', icon: Send, label: 'Kampagnen', exact: true },
+  { href: '/admin/newsletter/lists', icon: List, label: 'Listen' },
+  { href: '/admin/newsletter/subscribers', icon: UserCheck, label: 'Abonnenten' },
+]
+
 export default function AdminSidebar() {
   const pathname = usePathname()
+
+  const isNewsletterActive = pathname.startsWith('/admin/newsletter')
 
   return (
     <aside className="admin-sidebar">
@@ -53,6 +62,31 @@ export default function AdminSidebar() {
             </Link>
           )
         })}
+
+        {/* Newsletter group */}
+        <div style={{ marginTop: 2 }}>
+          <div className={`admin-nav-item${isNewsletterActive ? ' active' : ''}`}
+            style={{ cursor: 'default', pointerEvents: 'none' }}>
+            <Send size={16} strokeWidth={1.8} style={{ flexShrink: 0 }} />
+            Newsletter
+          </div>
+          {newsletterItems.map(({ href, icon: Icon, label, exact }) => {
+            const isActive = exact
+              ? pathname === href || pathname === '/admin/newsletter/new' || pathname.startsWith('/admin/newsletter/') && !pathname.startsWith('/admin/newsletter/lists') && !pathname.startsWith('/admin/newsletter/subscribers')
+              : pathname.startsWith(href)
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`admin-nav-item${isActive ? ' active' : ''}`}
+                style={{ paddingLeft: 36, fontSize: 13 }}
+              >
+                <Icon size={14} strokeWidth={1.8} style={{ flexShrink: 0 }} />
+                {label}
+              </Link>
+            )
+          })}
+        </div>
       </nav>
 
       {/* Bottom actions */}

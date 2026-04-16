@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { ConcentricCircles } from '@/components/ui/ConcentricCircles'
+import toast from 'react-hot-toast'
 
 const EuropeMap = dynamic(() => import('@/components/EuropeMap'), { ssr: false })
 
@@ -123,8 +124,11 @@ export default function HomePage() {
   const t = useTranslations('home')
   const tFaq = useTranslations('faq')
   const locale = useLocale()
-  const [email, setEmail] = useState('')
-  const [nlStatus, setNlStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [nlFirstName, setNlFirstName] = useState('')
+  const [nlLastName, setNlLastName] = useState('')
+  const [nlEmail, setNlEmail] = useState('')
+  const [nlErrors, setNlErrors] = useState<{ firstName?: string; lastName?: string; email?: string }>({})
+  const [nlLoading, setNlLoading] = useState(false)
   const faqItems = tFaq.raw('items') as Array<{ q: string; a: string }>
   const networkFeatures = t.raw('network.features') as string[]
   const bfeFeatures = t.raw('bfe.features') as Array<{ title: string; body: string }>
@@ -132,14 +136,32 @@ export default function HomePage() {
 
   async function handleNewsletter(e: React.FormEvent) {
     e.preventDefault()
-    setNlStatus('loading')
+    const errors: { firstName?: string; lastName?: string; email?: string } = {}
+    if (!nlFirstName.trim()) errors.firstName = 'Vorname ist Pflicht.'
+    if (!nlLastName.trim()) errors.lastName = 'Nachname ist Pflicht.'
+    if (!nlEmail.trim()) errors.email = 'E-Mail ist Pflicht.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nlEmail)) errors.email = 'Ungültige E-Mail-Adresse.'
+    if (Object.keys(errors).length > 0) { setNlErrors(errors); return }
+    setNlErrors({})
+    setNlLoading(true)
     try {
       const res = await fetch('/api/public/newsletter/subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ firstName: nlFirstName, lastName: nlLastName, email: nlEmail }),
       })
-      if (res.ok) { setNlStatus('success'); setEmail('') } else setNlStatus('error')
-    } catch { setNlStatus('error') }
+      if (res.status === 201) {
+        toast.success('Erfolgreich angemeldet!')
+        setNlFirstName(''); setNlLastName(''); setNlEmail('')
+      } else if (res.status === 409) {
+        toast.error('Diese E-Mail ist bereits angemeldet.')
+      } else {
+        toast.error('Bitte alle Felder ausfüllen.')
+      }
+    } catch {
+      toast.error('Ein Fehler ist aufgetreten.')
+    } finally {
+      setNlLoading(false)
+    }
   }
 
   // suppress unused import warnings
@@ -935,35 +957,55 @@ export default function HomePage() {
                 {t('newsletter.body2')}
               </p>
 
-              {nlStatus === 'success' ? (
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 28,
-                  background: '#F0FDF4', border: '1px solid #BBF7D0',
-                  borderRadius: 8, padding: '12px 24px', color: '#166534', fontSize: 15,
-                  position: 'relative', zIndex: 1,
-                }}>
-                  ✓ {t('newsletter.successMsg')}
+              <form onSubmit={handleNewsletter}
+                style={{ maxWidth: 640, margin: '28px auto 0', position: 'relative', zIndex: 1 }}
+                noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 10, marginBottom: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <input
+                      type="text" value={nlFirstName}
+                      onChange={e => setNlFirstName(e.target.value)}
+                      placeholder="Vorname"
+                      className="form-input"
+                      style={{ borderColor: nlErrors.firstName ? '#EF4444' : undefined }}
+                      onFocus={e => { e.target.style.borderColor = nlErrors.firstName ? '#EF4444' : '#0D1F6E'; e.target.style.boxShadow = '0 0 0 3px rgba(13,31,110,0.08)' }}
+                      onBlur={e => { e.target.style.borderColor = nlErrors.firstName ? '#EF4444' : '#E5E7EB'; e.target.style.boxShadow = 'none' }}
+                    />
+                    {nlErrors.firstName && <span style={{ fontSize: 12, color: '#EF4444' }}>{nlErrors.firstName}</span>}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <input
+                      type="text" value={nlLastName}
+                      onChange={e => setNlLastName(e.target.value)}
+                      placeholder="Nachname"
+                      className="form-input"
+                      style={{ borderColor: nlErrors.lastName ? '#EF4444' : undefined }}
+                      onFocus={e => { e.target.style.borderColor = nlErrors.lastName ? '#EF4444' : '#0D1F6E'; e.target.style.boxShadow = '0 0 0 3px rgba(13,31,110,0.08)' }}
+                      onBlur={e => { e.target.style.borderColor = nlErrors.lastName ? '#EF4444' : '#E5E7EB'; e.target.style.boxShadow = 'none' }}
+                    />
+                    {nlErrors.lastName && <span style={{ fontSize: 12, color: '#EF4444' }}>{nlErrors.lastName}</span>}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <input
+                      type="email" value={nlEmail}
+                      onChange={e => setNlEmail(e.target.value)}
+                      placeholder="deine@email.ch"
+                      className="form-input"
+                      style={{ borderColor: nlErrors.email ? '#EF4444' : undefined }}
+                      onFocus={e => { e.target.style.borderColor = nlErrors.email ? '#EF4444' : '#0D1F6E'; e.target.style.boxShadow = '0 0 0 3px rgba(13,31,110,0.08)' }}
+                      onBlur={e => { e.target.style.borderColor = nlErrors.email ? '#EF4444' : '#E5E7EB'; e.target.style.boxShadow = 'none' }}
+                    />
+                    {nlErrors.email && <span style={{ fontSize: 12, color: '#EF4444' }}>{nlErrors.email}</span>}
+                  </div>
                 </div>
-              ) : (
-                <form onSubmit={handleNewsletter}
-                  style={{ display: 'flex', gap: 8, maxWidth: 400, margin: '28px auto 0', position: 'relative', zIndex: 1 }}
-                  className="flex-col sm:flex-row">
-                  <input
-                    type="email" required value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder={t('newsletter.placeholder2')}
-                    className="form-input"
-                    style={{ flex: 1 }}
-                    onFocus={e => { e.target.style.borderColor = '#0D1F6E'; e.target.style.boxShadow = '0 0 0 3px rgba(13,31,110,0.08)' }}
-                    onBlur={e => { e.target.style.borderColor = '#E5E7EB'; e.target.style.boxShadow = 'none' }}
-                  />
-                  <button type="submit" disabled={nlStatus === 'loading'}
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
+                  <button type="submit" disabled={nlLoading}
                     className="btn btn-primary"
-                    style={{ whiteSpace: 'nowrap', opacity: nlStatus === 'loading' ? 0.6 : 1 }}>
-                    {nlStatus === 'loading' ? '...' : t('newsletter.cta')}
+                    style={{ whiteSpace: 'nowrap', opacity: nlLoading ? 0.6 : 1 }}>
+                    {nlLoading ? '...' : 'Abonnieren'}
                   </button>
-                </form>
-              )}
+                </div>
+              </form>
             </div>
           </FadeUp>
         </div>

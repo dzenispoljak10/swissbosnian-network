@@ -71,8 +71,8 @@ model NewsletterList {
 model NewsletterSubscriber {
   id               String   @id @default(cuid())
   email            String   @unique
-  firstName        String?
-  lastName         String?
+  firstName        String
+  lastName         String
   subscribed       Boolean  @default(true)
   unsubscribeToken String   @unique @default(cuid())
   createdAt        DateTime @default(now())
