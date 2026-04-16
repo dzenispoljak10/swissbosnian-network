@@ -168,6 +168,7 @@ model Event {
   endDate       DateTime?
   location      String?
   locationUrl   String?
+  coverImage    String?
   color         String    @default("#0D1F6E")
   published     Boolean   @default(true)
   createdAt     DateTime  @default(now())

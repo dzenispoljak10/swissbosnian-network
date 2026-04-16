@@ -151,6 +151,31 @@ export default function BlogEditor({ initialPost }: { initialPost?: Partial<Blog
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
 
+      {/* Cover-Bild (global, für beide Sprachen) */}
+      <div>
+        <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 8 }}>
+          Cover-Bild (für beide Sprachen)
+        </label>
+        {post.coverImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.coverImage}
+            alt="Cover"
+            style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 8, marginBottom: 12 }}
+          />
+        )}
+        <label style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          border: '2px dashed #E5E7EB', borderRadius: 8, padding: '28px 16px',
+          cursor: uploading ? 'not-allowed' : 'pointer', color: '#6B7280', fontSize: 14, fontWeight: 500,
+          background: '#F9FAFB',
+        }}>
+          <Upload size={20} />
+          {uploading ? 'Wird hochgeladen...' : post.coverImage ? 'Anderes Bild wählen' : 'Bild auswählen oder hierher ziehen'}
+          <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageUpload} disabled={uploading} />
+        </label>
+      </div>
+
       {/* Header: Tabs + Action Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
         {/* Language Tabs */}
@@ -284,26 +309,6 @@ export default function BlogEditor({ initialPost }: { initialPost?: Partial<Blog
 
       {/* Common fields */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <div style={{ gridColumn: '1 / -1' }}>
-          <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Cover-Bild</label>
-          {post.coverImage && (
-            <img
-              src={post.coverImage}
-              alt="Cover"
-              style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 8, marginBottom: 12 }}
-            />
-          )}
-          <label style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-            border: '2px dashed #E5E7EB', borderRadius: 8, padding: '28px 16px',
-            cursor: uploading ? 'not-allowed' : 'pointer', color: '#6B7280', fontSize: 14, fontWeight: 500,
-            background: '#F9FAFB',
-          }}>
-            <Upload size={20} />
-            {uploading ? 'Wird hochgeladen...' : post.coverImage ? 'Anderes Bild wählen' : 'Bild auswählen oder hierher ziehen'}
-            <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageUpload} disabled={uploading} />
-          </label>
-        </div>
         <div>
           <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Kategorie</label>
           <select

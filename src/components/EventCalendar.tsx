@@ -14,6 +14,7 @@ type CalendarEvent = {
   endDate: string | null
   location: string | null
   locationUrl: string | null
+  coverImage: string | null
   color: string
 }
 
@@ -248,6 +249,14 @@ export default function EventCalendar({ locale }: { locale: string }) {
               width: 240,
             }}
           >
+            {activeEvent.event.coverImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={activeEvent.event.coverImage}
+                alt={eventTitle(activeEvent.event)}
+                style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 8, marginBottom: 8 }}
+              />
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
               <div style={{ fontSize: 11, color: '#9CA3AF', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 {formatEventDate(activeEvent.event.date, locale)}
@@ -298,20 +307,30 @@ export default function EventCalendar({ locale }: { locale: string }) {
             {events.map(ev => (
               <div
                 key={ev.id}
-                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 8px', borderBottom: '1px solid #F3F4F6', borderRadius: 8, cursor: 'default' }}
+                style={{ padding: '10px 8px', borderBottom: '1px solid #F3F4F6', borderRadius: 8, cursor: 'default' }}
                 onMouseEnter={e => (e.currentTarget.style.background = '#F9FAFB')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
-                <span style={{ fontSize: 12, color: '#9CA3AF', fontWeight: 500, minWidth: 64 }}>
-                  {new Date(ev.date).toLocaleDateString(locale === 'bs' ? 'hr' : 'de-CH', { day: 'numeric', month: 'short' })}
-                </span>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: ev.color, flexShrink: 0 }} />
-                <span style={{ fontSize: 14, fontWeight: 600, color: '#0A0F1E', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {eventTitle(ev)}
-                </span>
-                {ev.location && (
-                  <span style={{ fontSize: 12, color: '#9CA3AF', whiteSpace: 'nowrap' }}>{ev.location}</span>
+                {ev.coverImage && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={ev.coverImage}
+                    alt={eventTitle(ev)}
+                    style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 8, marginBottom: 8 }}
+                  />
                 )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ fontSize: 12, color: '#9CA3AF', fontWeight: 500, minWidth: 64 }}>
+                    {new Date(ev.date).toLocaleDateString(locale === 'bs' ? 'hr' : 'de-CH', { day: 'numeric', month: 'short' })}
+                  </span>
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: ev.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: 14, fontWeight: 600, color: '#0A0F1E', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {eventTitle(ev)}
+                  </span>
+                  {ev.location && (
+                    <span style={{ fontSize: 12, color: '#9CA3AF', whiteSpace: 'nowrap' }}>{ev.location}</span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
