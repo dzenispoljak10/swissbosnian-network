@@ -161,10 +161,6 @@ export default function EventCalendar({ locale }: { locale: string }) {
         ) : (
           events.map(ev => (
             <div key={ev.id} style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: 12, padding: 16, marginBottom: 12 }}>
-              {ev.coverImage && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={ev.coverImage} alt={eventTitle(ev)} style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 8, marginBottom: 12 }} />
-              )}
               <div style={{ fontSize: 12, color: '#0D1F6E', fontWeight: 700, marginBottom: 4 }}>
                 {new Date(ev.date).toLocaleDateString(locale === 'bs' ? 'hr' : 'de-CH', { weekday: 'short', day: 'numeric', month: 'long' })} — {formatTime(ev.date)} Uhr
               </div>
@@ -306,14 +302,6 @@ export default function EventCalendar({ locale }: { locale: string }) {
             boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
           }}
         >
-          {popup.event.coverImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={popup.event.coverImage}
-              alt={eventTitle(popup.event)}
-              style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 8, marginBottom: 12 }}
-            />
-          )}
           <div style={{ fontSize: 11, color: '#9CA3AF', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
             {formatDate(popup.event.date, locale)}
           </div>
@@ -353,14 +341,6 @@ export default function EventCalendar({ locale }: { locale: string }) {
                 onMouseEnter={e => (e.currentTarget.style.background = '#F9FAFB')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
-                {ev.coverImage && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={ev.coverImage}
-                    alt={eventTitle(ev)}
-                    style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 8, marginBottom: 8 }}
-                  />
-                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <span style={{ fontSize: 12, color: '#9CA3AF', fontWeight: 500, minWidth: 64 }}>
                     {new Date(ev.date).toLocaleDateString(locale === 'bs' ? 'hr' : 'de-CH', { day: 'numeric', month: 'short' })}
