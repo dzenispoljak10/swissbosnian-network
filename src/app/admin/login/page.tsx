@@ -23,7 +23,8 @@ export default function LoginPage() {
     })
 
     if (result?.error) {
-      setError('E-Mail oder Passwort falsch')
+      const msg = result.error
+      setError(msg.startsWith('Zu viele Versuche') ? msg : 'E-Mail oder Passwort falsch')
       setLoading(false)
     } else {
       router.push('/admin/dashboard')

@@ -3,6 +3,8 @@ import Credentials from 'next-auth/providers/credentials'
 import { prisma } from './prisma'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
+import { headers } from 'next/headers'
+import { checkRateLimit, resetRateLimit } from './rateLimit'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -16,6 +18,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const parsed = loginSchema.safeParse(credentials)
         if (!parsed.success) return null
 
+        const headersList = await headers()
+        const ip = headersList.get('x-forwarded-for') ?? headersList.get('x-real-ip') ?? 'unknown'
+        const { allowed, waitMinutes } = checkRateLimit(ip)
+
+        if (!allowed) {
+          throw new Error(`Zu viele Versuche. Bitte warte ${waitMinutes} Minuten.`)
+        }
+
         const user = await prisma.user.findUnique({
           where: { email: parsed.data.email },
         })
@@ -24,6 +34,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const valid = await bcrypt.compare(parsed.data.password, user.password)
         if (!valid) return null
 
+        resetRateLimit(ip)
         return { id: user.id, email: user.email, name: user.name, role: user.role }
       },
     }),
