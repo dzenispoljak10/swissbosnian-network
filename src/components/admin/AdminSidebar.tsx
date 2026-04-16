@@ -10,7 +10,6 @@ import {
   Send,
   Users,
   CreditCard,
-  Settings,
   LogOut,
   ExternalLink,
   List,
@@ -23,7 +22,6 @@ const navItems = [
   { href: '/admin/events', icon: Calendar, label: 'Events' },
   { href: '/admin/members', icon: Users, label: 'Mitglieder' },
   { href: '/admin/payments', icon: CreditCard, label: 'Zahlungen' },
-  { href: '/admin/settings', icon: Settings, label: 'Einstellungen' },
 ]
 
 const newsletterItems = [
