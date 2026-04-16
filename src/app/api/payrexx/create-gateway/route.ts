@@ -15,8 +15,8 @@ export async function POST(req: NextRequest) {
     }
 
     const purposes: Record<string, string> = {
-      GOENNER: 'Goenner-Mitgliedschaft Swiss Bosnian Network',
-      PARTNER: 'Partner-Mitgliedschaft Swiss Bosnian Network',
+      GOENNER: 'Goenner-Mitgliedschaft-SBN',
+      PARTNER: 'Partner-Mitgliedschaft-SBN',
     }
 
     const amount = amounts[memberType]
