@@ -13,7 +13,7 @@ async function main() {
     create: {
       email: 'dzenispoljak@gmail.com',
       password: hashedPassword,
-      name: 'Dzenan Poljak',
+      name: 'Admin',
       role: 'SUPER_ADMIN',
     },
   })
