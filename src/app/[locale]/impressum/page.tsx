@@ -2,12 +2,28 @@ import { Link } from '@/i18n/navigation'
 import type { Metadata } from 'next'
 import React from 'react'
 
-export const metadata: Metadata = {
-  title: 'Impressum — Swiss Bosnian Network',
-  description: 'Impressum des Swiss Bosnian Network – gemeinnütziger Verein mit Sitz in der Schweiz.',
-}
-
 type Props = { params: Promise<{ locale: string }> }
+
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://swissbosnian-network.ch'
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const isDe = locale === 'de'
+  const title = 'Impressum – Swiss Bosnian Network'
+  const description = isDe
+    ? 'Impressum des Swiss Bosnian Network – gemeinnütziger Verein mit Sitz in der Schweiz.'
+    : 'Impressum Swiss Bosnian Network – neprofitno udruženje sa sjedištem u Švicarskoj.'
+  const path = '/impressum'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE}/${locale}${path}`,
+      languages: { de: `${BASE}/de${path}`, bs: `${BASE}/bs${path}` },
+    },
+    openGraph: { title, description, siteName: 'Swiss Bosnian Network', type: 'website' },
+  }
+}
 
 const content = {
   de: {

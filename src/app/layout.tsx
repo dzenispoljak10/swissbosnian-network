@@ -8,13 +8,27 @@ const inter = Inter({
   display: 'swap',
 })
 
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://swissbosnian-network.ch'
+
 export const metadata: Metadata = {
-  title: 'Swiss Bosnian Network',
-  description: 'Vernetze dich mit der bosnischen Community in der Schweiz.',
+  metadataBase: new URL(BASE),
+  title: {
+    template: '%s | Swiss Bosnian Network',
+    default: 'Swiss Bosnian Network',
+  },
+  description: 'Das Swiss Bosnian Network vernetzt Bosnier:innen in der Schweiz. Professionelles Netzwerk, exklusive Events und Mitgliedervorteile für die bosnische Diaspora.',
   icons: {
     icon: '/favicon.png',
     apple: '/apple-touch-icon.png',
     shortcut: '/favicon.png',
+  },
+  openGraph: {
+    siteName: 'Swiss Bosnian Network',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'Swiss Bosnian Network' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 

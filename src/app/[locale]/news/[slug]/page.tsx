@@ -4,8 +4,57 @@ import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { formatDate } from '@/lib/utils'
+import type { Metadata } from 'next'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
+
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://swissbosnian-network.ch'
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params
+  const isDe = locale === 'de'
+
+  const post = await prisma.blogPost.findUnique({
+    where: { slug, published: true },
+    select: { titleDe: true, titleBs: true, excerptDe: true, excerptBs: true, coverImage: true, publishedAt: true },
+  })
+
+  if (!post) return { title: 'Beitrag nicht gefunden' }
+
+  const title = isDe || !post.titleBs ? post.titleDe : post.titleBs
+  const description = isDe || !post.excerptBs ? (post.excerptDe ?? '') : post.excerptBs
+
+  const dePath = `/de/news/${slug}`
+  const bsPath = `/bs/vijesti/${slug}`
+  const canonical = `${BASE}${isDe ? dePath : bsPath}`
+
+  const ogImage = post.coverImage ?? `${BASE}/logo.png`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: { de: `${BASE}${dePath}`, bs: `${BASE}${bsPath}` },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'Swiss Bosnian Network',
+      locale: isDe ? 'de_CH' : 'bs_BA',
+      type: 'article',
+      publishedTime: post.publishedAt?.toISOString(),
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  }
+}
 
 export default async function BlogDetailPage({ params }: Props) {
   const { locale, slug } = await params
@@ -22,7 +71,26 @@ export default async function BlogDetailPage({ params }: Props) {
   const content = locale === 'bs' && post.contentBs ? post.contentBs : post.contentDe
   const isTranslated = locale === 'bs' && !!post.contentBs
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: locale === 'bs' && post.excerptBs ? post.excerptBs : post.excerptDe,
+    image: post.coverImage ?? undefined,
+    datePublished: post.publishedAt?.toISOString(),
+    dateModified: post.updatedAt?.toISOString(),
+    author: { '@type': 'Organization', name: 'Swiss Bosnian Network' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Swiss Bosnian Network',
+      logo: { '@type': 'ImageObject', url: `${BASE}/logo.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}/${locale}/${locale === 'bs' ? 'vijesti' : 'news'}/${slug}` },
+  }
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div>
       {post.coverImage && (
         <div className="relative h-72 lg:h-96 w-full">
@@ -101,5 +169,6 @@ export default async function BlogDetailPage({ params }: Props) {
         </div>
       </div>
     </div>
+    </>
   )
 }

@@ -3,8 +3,55 @@ import { getTranslations } from 'next-intl/server'
 import { formatDate } from '@/lib/utils'
 import { PostCard } from './PostCard'
 import EventCalendar from '@/components/EventCalendar'
+import type { Metadata } from 'next'
 
 type Props = { params: Promise<{ locale: string }> }
+
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://swissbosnian-network.ch'
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const isDe = locale === 'de'
+
+  const title = isDe
+    ? 'News & Blog – Swiss Bosnian Network'
+    : 'Vijesti & Blog – Swiss Bosnian Network'
+
+  const description = isDe
+    ? 'Aktuelle News, Berichte und Beiträge der bosnischen Community in der Schweiz. Bleib informiert mit dem Swiss Bosnian Network Blog.'
+    : 'Aktuelne vijesti, izvještaji i tekstovi bosanske zajednice u Švicarskoj. Swiss Bosnian Network blog.'
+
+  const dePath = '/de/news'
+  const bsPath = '/bs/vijesti'
+  const canonical = `${BASE}${isDe ? dePath : bsPath}`
+
+  return {
+    title,
+    description,
+    keywords: isDe
+      ? 'Swiss Bosnian Network News, bosnische Community Schweiz aktuell, Blog Bosnier Schweiz, Beiträge Community'
+      : 'Swiss Bosnian Network vijesti, bosanska zajednica Švicarska, blog Bosanci Švicarska',
+    alternates: {
+      canonical,
+      languages: { de: `${BASE}${dePath}`, bs: `${BASE}${bsPath}` },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'Swiss Bosnian Network',
+      locale: isDe ? 'de_CH' : 'bs_BA',
+      type: 'website',
+      images: [{ url: `${BASE}/logo.png`, width: 512, height: 512, alt: 'Swiss Bosnian Network' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${BASE}/logo.png`],
+    },
+  }
+}
 
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params
