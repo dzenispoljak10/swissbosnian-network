@@ -261,6 +261,26 @@
     "body": "Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Bestätigungslink in deinem Postfach, um die Anmeldung abzuschliessen.",
     "hint": "Schau ggf. auch in deinen Spam-Ordner. Der Link ist 7 Tage gültig."
   },
+  "cookieBanner": {
+    "title": "Cookies & Datenschutz",
+    "body": "Wir verwenden Cookies, um diese Website zu betreiben und deine Erfahrung zu verbessern. Mehr in unserer",
+    "linkPrivacy": "Datenschutzerklärung",
+    "btnAccept": "Alle akzeptieren",
+    "btnReject": "Nur essentielle",
+    "btnCustomize": "Einstellungen",
+    "btnSave": "Auswahl speichern",
+    "close": "Schliessen",
+    "alwaysOn": "Immer aktiv",
+    "prefsTitle": "Cookie-Einstellungen",
+    "prefsBody": "Wähle aus, welche Cookies du zulassen möchtest. Du kannst deine Auswahl jederzeit über den Footer-Link ändern. Mehr in unserer",
+    "catEssentialTitle": "Essenziell",
+    "catEssentialBody": "Notwendig für Login, Sprachauswahl und Sicherheit. Diese Cookies können nicht deaktiviert werden.",
+    "catFunctionalTitle": "Funktional",
+    "catFunctionalBody": "Speichert Komfort-Einstellungen wie deine bevorzugte Sprache.",
+    "catAnalyticsTitle": "Analyse",
+    "catAnalyticsBody": "Anonyme Nutzungsstatistiken, damit wir die Website verbessern können (aktuell nicht aktiv)."
+  },
+  "cookieSettingsLink": "Cookie-Einstellungen",
   "statuten": {
     "title": "Statuten",
     "subtitle": "Vereinsstatuten Swiss Bosnian Network"

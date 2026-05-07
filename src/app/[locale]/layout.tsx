@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import CookieBanner from '@/components/layout/CookieBanner'
 import type { Metadata } from 'next'
 
 type Props = {
@@ -100,6 +101,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <CookieBanner />
     </NextIntlClientProvider>
   )
 }

@@ -8,6 +8,7 @@ type LocalHref = ComponentProps<typeof Link>['href']
 import { Mail, MapPin, ArrowRight, Zap } from 'lucide-react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { openCookiePreferences } from '@/lib/cookieConsent'
 
 const LinkedInSvg = ({ size = 14 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size}>
@@ -79,6 +80,7 @@ const headingStyle: React.CSSProperties = {
 
 export default function Footer() {
   const t = useTranslations('footer')
+  const tCookie = useTranslations()
 
   const menuLinks: Array<{ key: string; href: LocalHref }> = [
     { key: 'home',        href: '/' },
@@ -219,6 +221,23 @@ export default function Footer() {
                   {t(link.key as Parameters<typeof t>[0])}
                 </Link>
               ))}
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                style={{
+                  ...linkStyle,
+                  background: 'transparent',
+                  border: 0,
+                  padding: 0,
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  font: 'inherit',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#0F172A' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B' }}
+              >
+                {tCookie('cookieSettingsLink')}
+              </button>
             </nav>
           </div>
 

@@ -246,6 +246,26 @@
     "body": "Poslali smo ti e-mail. Molimo te da klikneš na link za potvrdu u svom sandučetu kako bismo dovršili prijavu.",
     "hint": "Provjeri po potrebi i spam folder. Link vrijedi 7 dana."
   },
+  "cookieBanner": {
+    "title": "Kolačići i privatnost",
+    "body": "Koristimo kolačiće kako bismo upravljali ovom web-stranicom i poboljšali tvoje iskustvo. Više u našoj",
+    "linkPrivacy": "Izjavi o zaštiti podataka",
+    "btnAccept": "Prihvati sve",
+    "btnReject": "Samo nužni",
+    "btnCustomize": "Postavke",
+    "btnSave": "Sačuvaj odabir",
+    "close": "Zatvori",
+    "alwaysOn": "Uvijek aktivno",
+    "prefsTitle": "Postavke kolačića",
+    "prefsBody": "Odaberi koje kolačiće želiš dozvoliti. Svoj odabir možeš u svakom trenutku promijeniti putem linka u footeru. Više u našoj",
+    "catEssentialTitle": "Nužni",
+    "catEssentialBody": "Potrebni za prijavu, izbor jezika i sigurnost. Ovi kolačići se ne mogu deaktivirati.",
+    "catFunctionalTitle": "Funkcionalni",
+    "catFunctionalBody": "Pamte postavke udobnosti poput tvog željenog jezika.",
+    "catAnalyticsTitle": "Analitički",
+    "catAnalyticsBody": "Anonimna statistika korištenja kako bismo poboljšali stranicu (trenutno nije aktivno)."
+  },
+  "cookieSettingsLink": "Postavke kolačića",
   "statuten": {
     "title": "Statut",
     "subtitle": "Statut udruženja Swiss Bosnian Network"
