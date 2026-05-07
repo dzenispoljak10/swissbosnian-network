@@ -36,7 +36,7 @@ STRIPE_WEBHOOK_SECRET="whsec_..."
 STRIPE_PRICE_GOENNER="price_..."
 STRIPE_PRICE_PARTNER="price_..."
 RESEND_API_KEY="re_..."
-RESEND_FROM_EMAIL="newsletter@deine-domain.ch"
+RESEND_FROM="newsletter@deine-domain.ch"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
 ```

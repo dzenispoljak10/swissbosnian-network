@@ -8,7 +8,7 @@ export async function sendWelcomeEmail(email: string, name: string, memberType: 
     return
   }
   await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+    from: process.env.RESEND_FROM!,
     to: email,
     subject: 'Willkommen beim Swiss Bosnian Network!',
     html: `<h1>Willkommen, ${name}!</h1><p>Deine Mitgliedschaft als ${memberType} ist jetzt aktiv.</p>`,
@@ -25,7 +25,7 @@ export async function sendNewsletterCampaign(
   }
   const unsubscribeUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/newsletter/unsubscribe?token=${subscriber.unsubscribeToken}`
   await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+    from: process.env.RESEND_FROM!,
     to: subscriber.email,
     subject: campaign.subject,
     html: `${campaign.content}<hr><p style="font-size:12px"><a href="${unsubscribeUrl}">Abmelden</a></p>`,

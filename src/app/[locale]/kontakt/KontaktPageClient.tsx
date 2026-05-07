@@ -57,7 +57,7 @@ export default function KontaktPage() {
       const res = await fetch('/api/public/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, locale }),
       })
       setStatus(res.ok ? 'success' : 'error')
       if (res.ok) setForm({ name: '', email: '', subject: '', message: '' })

@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   }
 
   await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+    from: process.env.RESEND_FROM!,
     to: email,
     subject: `[TEST] ${subject}`,
     html: content,
