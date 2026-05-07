@@ -224,6 +224,12 @@
     "success": "Uspješno pretplaćen!",
     "error": "Greška pri pretplati."
   },
+  "newsletterUnsubscribed": {
+    "title": "Uspješno si se odjavio/la",
+    "body": "Više nećeš primati newsletter e-mailove od nas. Žao nam je što odlaziš – možeš se ponovo prijaviti u bilo kojem trenutku.",
+    "backHome": "Natrag na početnu",
+    "resubscribe": "Ponovo se pretplati"
+  },
   "statuten": {
     "title": "Statut",
     "subtitle": "Statut udruženja Swiss Bosnian Network"

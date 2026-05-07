@@ -18,6 +18,7 @@ export const routing = defineRouting({
     '/datenschutz':          { de: '/datenschutz',          bs: '/zastita-podataka' },
     '/faq':                  { de: '/faq',                  bs: '/cesto-pitanja' },
     '/newsletter':           { de: '/newsletter',           bs: '/newsletter' },
+    '/newsletter/abgemeldet': { de: '/newsletter/abgemeldet', bs: '/newsletter/odjavljen' },
     '/brands-for-employees': { de: '/brands-for-employees', bs: '/pogodnosti-za-clanove' },
   },
 })

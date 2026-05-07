@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { resend } from '@/lib/resend'
+import { htmlToText } from '@/lib/email/htmlToText'
 
 export async function POST(req: NextRequest) {
   const session = await auth()
@@ -15,8 +16,10 @@ export async function POST(req: NextRequest) {
   await resend.emails.send({
     from: process.env.RESEND_FROM!,
     to: email,
+    replyTo: process.env.RESEND_REPLY_TO ?? undefined,
     subject: `[TEST] ${subject}`,
     html: content,
+    text: htmlToText(content),
   })
 
   return NextResponse.json({ success: true })

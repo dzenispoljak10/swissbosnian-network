@@ -239,6 +239,12 @@
     "success": "Erfolgreich abonniert!",
     "error": "Fehler beim Abonnieren."
   },
+  "newsletterUnsubscribed": {
+    "title": "Du wurdest abgemeldet",
+    "body": "Du erhältst von uns keine Newsletter-E-Mails mehr. Schade, dass du gehst – du kannst dich jederzeit wieder anmelden.",
+    "backHome": "Zurück zur Startseite",
+    "resubscribe": "Erneut abonnieren"
+  },
   "statuten": {
     "title": "Statuten",
     "subtitle": "Vereinsstatuten Swiss Bosnian Network"
