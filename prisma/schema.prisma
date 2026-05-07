@@ -69,14 +69,18 @@ model NewsletterList {
 }
 
 model NewsletterSubscriber {
-  id               String   @id @default(cuid())
-  email            String   @unique
-  firstName        String
-  lastName         String
-  subscribed       Boolean  @default(true)
-  unsubscribeToken String   @unique @default(cuid())
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id                    String    @id @default(cuid())
+  email                 String    @unique
+  firstName             String
+  lastName              String
+  locale                String    @default("de")
+  subscribed            Boolean   @default(false)
+  confirmed             Boolean   @default(false)
+  confirmToken          String?   @unique
+  confirmTokenExpiresAt DateTime?
+  unsubscribeToken      String    @unique @default(cuid())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 
   lists      NewsletterList[]
   sentEmails NewsletterSent[]

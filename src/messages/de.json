@@ -245,6 +245,22 @@
     "backHome": "Zurück zur Startseite",
     "resubscribe": "Erneut abonnieren"
   },
+  "newsletterConfirmed": {
+    "title": "Danke, du bist angemeldet!",
+    "body": "Deine E-Mail-Adresse ist bestätigt. Du erhältst ab sofort unseren Newsletter mit Updates aus der Community.",
+    "backHome": "Zurück zur Startseite"
+  },
+  "newsletterConfirmFailed": {
+    "title": "Bestätigung fehlgeschlagen",
+    "body": "Der Bestätigungslink ist ungültig oder bereits abgelaufen. Bitte melde dich erneut an, um einen neuen Link zu erhalten.",
+    "retry": "Erneut anmelden",
+    "backHome": "Zurück zur Startseite"
+  },
+  "newsletterPendingConfirm": {
+    "title": "Fast geschafft!",
+    "body": "Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Bestätigungslink in deinem Postfach, um die Anmeldung abzuschliessen.",
+    "hint": "Schau ggf. auch in deinen Spam-Ordner. Der Link ist 7 Tage gültig."
+  },
   "statuten": {
     "title": "Statuten",
     "subtitle": "Vereinsstatuten Swiss Bosnian Network"

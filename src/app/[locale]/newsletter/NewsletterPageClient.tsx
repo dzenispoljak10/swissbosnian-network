@@ -1,11 +1,13 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useState } from 'react'
-import { CheckCircle, Mail } from 'lucide-react'
+import { Mail, MailCheck } from 'lucide-react'
 
 export default function NewsletterPage() {
   const t = useTranslations('newsletter')
+  const tPending = useTranslations('newsletterPendingConfirm')
+  const locale = useLocale()
   const [form, setForm] = useState({ email: '', firstName: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -16,7 +18,7 @@ export default function NewsletterPage() {
       const res = await fetch('/api/public/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, locale }),
       })
       setStatus(res.ok ? 'success' : 'error')
     } catch {
@@ -62,9 +64,11 @@ export default function NewsletterPage() {
             </div>
 
             {status === 'success' ? (
-              <div style={{ textAlign: 'center', padding: '32px 0' }}>
-                <CheckCircle size={48} strokeWidth={1.5} style={{ color: '#22c55e', margin: '0 auto 16px', display: 'block' }} />
-                <p style={{ fontSize: 18, fontWeight: 600, color: '#0A0F1E', marginBottom: 8 }}>{t('success')}</p>
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <MailCheck size={48} strokeWidth={1.5} style={{ color: '#0D1F6E', margin: '0 auto 16px', display: 'block' }} />
+                <p style={{ fontSize: 18, fontWeight: 700, color: '#0A0F1E', margin: '0 0 12px' }}>{tPending('title')}</p>
+                <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.7, margin: '0 0 12px' }}>{tPending('body')}</p>
+                <p style={{ fontSize: 12, color: '#9CA3AF', lineHeight: 1.6, margin: 0 }}>{tPending('hint')}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

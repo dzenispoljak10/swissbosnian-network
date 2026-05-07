@@ -19,6 +19,8 @@ export const routing = defineRouting({
     '/faq':                  { de: '/faq',                  bs: '/cesto-pitanja' },
     '/newsletter':           { de: '/newsletter',           bs: '/newsletter' },
     '/newsletter/abgemeldet': { de: '/newsletter/abgemeldet', bs: '/newsletter/odjavljen' },
+    '/newsletter/bestaetigt': { de: '/newsletter/bestaetigt', bs: '/newsletter/potvrdjen' },
+    '/newsletter/bestaetigung-fehlgeschlagen': { de: '/newsletter/bestaetigung-fehlgeschlagen', bs: '/newsletter/potvrda-neuspjesna' },
     '/brands-for-employees': { de: '/brands-for-employees', bs: '/pogodnosti-za-clanove' },
   },
 })

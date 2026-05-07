@@ -147,13 +147,18 @@ export default function HomePage() {
     try {
       const res = await fetch('/api/public/newsletter/subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName: nlFirstName, lastName: nlLastName, email: nlEmail }),
+        body: JSON.stringify({ firstName: nlFirstName, lastName: nlLastName, email: nlEmail, locale }),
       })
-      if (res.status === 201) {
-        toast.success('Erfolgreich angemeldet!')
-        setNlFirstName(''); setNlLastName(''); setNlEmail('')
-      } else if (res.status === 409) {
-        toast.error('Diese E-Mail ist bereits angemeldet.')
+      const data = await res.json().catch(() => ({} as { status?: string }))
+      if (res.ok) {
+        if (data?.status === 'already_subscribed') {
+          toast.success('Diese E-Mail ist bereits angemeldet.')
+        } else {
+          toast.success('Bestätigungsmail verschickt – bitte E-Mail-Postfach prüfen.')
+          setNlFirstName(''); setNlLastName(''); setNlEmail('')
+        }
+      } else if (res.status === 429) {
+        toast.error('Zu viele Anfragen. Bitte später erneut versuchen.')
       } else {
         toast.error('Bitte alle Felder ausfüllen.')
       }

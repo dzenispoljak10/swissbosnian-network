@@ -230,6 +230,22 @@
     "backHome": "Natrag na početnu",
     "resubscribe": "Ponovo se pretplati"
   },
+  "newsletterConfirmed": {
+    "title": "Hvala, prijavljen/a si!",
+    "body": "Tvoja e-mail adresa je potvrđena. Od sada ćeš dobijati naš newsletter sa novostima iz zajednice.",
+    "backHome": "Natrag na početnu"
+  },
+  "newsletterConfirmFailed": {
+    "title": "Potvrda nije uspjela",
+    "body": "Link za potvrdu nije važeći ili je istekao. Molimo te da se ponovo prijaviš kako bismo ti poslali novi link.",
+    "retry": "Ponovo se prijavi",
+    "backHome": "Natrag na početnu"
+  },
+  "newsletterPendingConfirm": {
+    "title": "Skoro gotovo!",
+    "body": "Poslali smo ti e-mail. Molimo te da klikneš na link za potvrdu u svom sandučetu kako bismo dovršili prijavu.",
+    "hint": "Provjeri po potrebi i spam folder. Link vrijedi 7 dana."
+  },
   "statuten": {
     "title": "Statut",
     "subtitle": "Statut udruženja Swiss Bosnian Network"
