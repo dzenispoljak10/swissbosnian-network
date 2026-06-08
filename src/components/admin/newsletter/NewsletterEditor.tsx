@@ -335,6 +335,20 @@ function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: str
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Continuously remember the selection while it is inside the editor, so a
+  // toolbar button or the (native) size dropdown can re-apply it even after the
+  // editor loses focus.
+  useEffect(() => {
+    function onSelectionChange() {
+      const sel = window.getSelection()
+      if (sel && sel.rangeCount && ref.current && ref.current.contains(sel.anchorNode)) {
+        savedRange.current = sel.getRangeAt(0).cloneRange()
+      }
+    }
+    document.addEventListener('selectionchange', onSelectionChange)
+    return () => document.removeEventListener('selectionchange', onSelectionChange)
+  }, [])
+
   function emit() {
     if (!ref.current) return
     const html = ref.current.innerHTML
@@ -342,23 +356,35 @@ function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: str
     onChange(html)
   }
 
-  // Remember the current text selection so a font size can be applied even after
-  // focus moves to the (native) size dropdown.
-  function saveSelection() {
+  // Focus the editor and restore the last selection. If nothing was selected,
+  // select the whole text so "make it bigger/bold" applies to everything.
+  function restoreSelection(): Range | null {
+    const el = ref.current
+    if (!el) return null
+    el.focus()
     const sel = window.getSelection()
-    if (sel && sel.rangeCount && ref.current?.contains(sel.anchorNode)) {
-      savedRange.current = sel.getRangeAt(0).cloneRange()
+    if (!sel) return null
+    let range = savedRange.current
+    if (!range || range.collapsed || !el.contains(range.commonAncestorContainer)) {
+      range = document.createRange()
+      range.selectNodeContents(el)
     }
+    sel.removeAllRanges()
+    sel.addRange(range)
+    return range
   }
 
   function exec(command: string) {
+    restoreSelection()
     document.execCommand(command, false)
     emit()
+    const sel = window.getSelection()
+    if (sel && sel.rangeCount) savedRange.current = sel.getRangeAt(0).cloneRange()
   }
 
   function applyFontSize(size: string) {
-    const range = savedRange.current
-    if (!range || range.collapsed) return
+    const range = restoreSelection()
+    if (!range) return
     const span = document.createElement('span')
     span.style.fontSize = size
     try {
@@ -395,6 +421,7 @@ function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: str
         <select
           title="Schriftgröße"
           value=""
+          onMouseDown={saveSelectionNow}
           onChange={e => { if (e.target.value) applyFontSize(e.target.value) }}
           style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 96, padding: '0 8px', height: 32 }}
         >
@@ -407,8 +434,6 @@ function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: str
         contentEditable
         suppressContentEditableWarning
         onInput={emit}
-        onMouseUp={saveSelection}
-        onKeyUp={saveSelection}
         style={{
           ...inputStyle,
           minHeight: 160,
@@ -422,10 +447,18 @@ function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: str
         }}
       />
       <p style={{ fontSize: 11, color: '#9CA3AF', margin: '5px 0 0' }}>
-        Text auswählen und einen Knopf bzw. die Schriftgröße wählen, um nur die Auswahl zu formatieren.
+        Text auswählen und einen Knopf bzw. die Schriftgröße wählen — ohne Auswahl wird der ganze Text formatiert.
       </p>
     </div>
   )
+
+  // Snapshot the selection the instant the dropdown is pressed (before focus moves).
+  function saveSelectionNow() {
+    const sel = window.getSelection()
+    if (sel && sel.rangeCount && ref.current && ref.current.contains(sel.anchorNode)) {
+      savedRange.current = sel.getRangeAt(0).cloneRange()
+    }
+  }
 }
 
 function BlockSettingsPanel({ block, onChange, onImageUpload }: { block: Block; onChange: (data: Record<string, unknown>) => void; onImageUpload: (blockId: string, file: File) => void }) {
