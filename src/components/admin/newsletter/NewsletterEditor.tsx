@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import {
   DndContext,
   closestCenter,
@@ -36,6 +36,9 @@ import {
   AlignJustify,
   Settings,
   Upload,
+  Bold,
+  Italic,
+  Underline,
 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -306,6 +309,66 @@ const inputStyle: React.CSSProperties = {
   width: '100%', padding: '7px 10px', border: '1px solid #E5E7EB', borderRadius: 7, fontSize: 13, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box',
 }
 
+// Rich-text toolbar for the Text block: wraps the selected text (or, if nothing
+// is selected, a placeholder) in HTML tags so the content stays valid email HTML.
+function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLTextAreaElement>(null)
+
+  function surround(before: string, after: string, placeholder = 'Text') {
+    const ta = ref.current
+    const start = ta ? ta.selectionStart : value.length
+    const end = ta ? ta.selectionEnd : value.length
+    const selected = value.slice(start, end) || placeholder
+    const next = value.slice(0, start) + before + selected + after + value.slice(end)
+    onChange(next)
+    // Re-select the formatted text so the user can keep typing/formatting.
+    requestAnimationFrame(() => {
+      if (!ta) return
+      ta.focus()
+      const pos = start + before.length
+      ta.setSelectionRange(pos, pos + selected.length)
+    })
+  }
+
+  const tbBtn: React.CSSProperties = {
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    width: 30, height: 30, border: '1px solid #E5E7EB', borderRadius: 6,
+    background: 'white', color: '#374151', cursor: 'pointer',
+  }
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 6, flexWrap: 'wrap' }}>
+        <button type="button" title="Fett" onClick={() => surround('<strong>', '</strong>')} style={tbBtn}><Bold size={14} /></button>
+        <button type="button" title="Kursiv" onClick={() => surround('<em>', '</em>')} style={tbBtn}><Italic size={14} /></button>
+        <button type="button" title="Unterstrichen" onClick={() => surround('<u>', '</u>')} style={tbBtn}><Underline size={14} /></button>
+        <select
+          title="Schriftgröße"
+          value=""
+          onChange={e => { if (e.target.value) surround(`<span style="font-size:${e.target.value};">`, '</span>') }}
+          style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 90, padding: '0 8px', height: 30 }}
+        >
+          <option value="">Größe…</option>
+          <option value="13px">Klein</option>
+          <option value="18px">Größer</option>
+          <option value="22px">Groß</option>
+          <option value="28px">Sehr groß</option>
+        </select>
+      </div>
+      <textarea
+        ref={ref}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        rows={10}
+        style={{ ...inputStyle, resize: 'vertical', fontFamily: 'monospace', fontSize: 12, lineHeight: 1.5 }}
+      />
+      <p style={{ fontSize: 11, color: '#9CA3AF', margin: '5px 0 0' }}>
+        Text markieren und auf einen Knopf klicken, um ihn zu formatieren.
+      </p>
+    </div>
+  )
+}
+
 function BlockSettingsPanel({ block, onChange, onImageUpload }: { block: Block; onChange: (data: Record<string, unknown>) => void; onImageUpload: (blockId: string, file: File) => void }) {
   const d = block.data
   const set = (key: string, value: unknown) => onChange({ [key]: value })
@@ -334,13 +397,8 @@ function BlockSettingsPanel({ block, onChange, onImageUpload }: { block: Block; 
       return (
         <>
           <Field label="Ausrichtung"><AlignButtons value={(d.align as string) || 'left'} onChange={v => set('align', v)} /></Field>
-          <Field label="Inhalt (HTML)">
-            <textarea
-              value={(d.content as string) || ''}
-              onChange={e => set('content', e.target.value)}
-              rows={10}
-              style={{ ...inputStyle, resize: 'vertical', fontFamily: 'monospace', fontSize: 12, lineHeight: 1.5 }}
-            />
+          <Field label="Inhalt">
+            <TextBlockEditor value={(d.content as string) || ''} onChange={v => set('content', v)} />
           </Field>
         </>
       )
