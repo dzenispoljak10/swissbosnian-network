@@ -309,61 +309,120 @@ const inputStyle: React.CSSProperties = {
   width: '100%', padding: '7px 10px', border: '1px solid #E5E7EB', borderRadius: 7, fontSize: 13, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box',
 }
 
-// Rich-text toolbar for the Text block: wraps the selected text (or, if nothing
-// is selected, a placeholder) in HTML tags so the content stays valid email HTML.
-function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const ref = useRef<HTMLTextAreaElement>(null)
+// Visual (WYSIWYG) editor for the Text block. The admin selects the rendered
+// text — not the HTML source — and the toolbar applies fett/kursiv/unterstrichen
+// or a font size to exactly the selection. The result is stored as email-safe
+// HTML, so an existing campaign's content loads and stays editable unchanged.
+const FONT_SIZES = ['14px', '16px', '18px', '20px', '24px', '28px', '32px']
 
-  function surround(before: string, after: string, placeholder = 'Text') {
-    const ta = ref.current
-    const start = ta ? ta.selectionStart : value.length
-    const end = ta ? ta.selectionEnd : value.length
-    const selected = value.slice(start, end) || placeholder
-    const next = value.slice(0, start) + before + selected + after + value.slice(end)
-    onChange(next)
-    // Re-select the formatted text so the user can keep typing/formatting.
-    requestAnimationFrame(() => {
-      if (!ta) return
-      ta.focus()
-      const pos = start + before.length
-      ta.setSelectionRange(pos, pos + selected.length)
-    })
+function TextBlockEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const lastHtml = useRef<string>(value)
+  const savedRange = useRef<Range | null>(null)
+
+  // Load the content into the editor on mount and whenever it changes from the
+  // outside (e.g. switching to another text block) — but never while the user is
+  // typing, which would reset the caret.
+  useEffect(() => {
+    if (ref.current && value !== lastHtml.current) {
+      ref.current.innerHTML = value
+      lastHtml.current = value
+    }
+  }, [value])
+
+  useEffect(() => {
+    if (ref.current) ref.current.innerHTML = value
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function emit() {
+    if (!ref.current) return
+    const html = ref.current.innerHTML
+    lastHtml.current = html
+    onChange(html)
+  }
+
+  // Remember the current text selection so a font size can be applied even after
+  // focus moves to the (native) size dropdown.
+  function saveSelection() {
+    const sel = window.getSelection()
+    if (sel && sel.rangeCount && ref.current?.contains(sel.anchorNode)) {
+      savedRange.current = sel.getRangeAt(0).cloneRange()
+    }
+  }
+
+  function exec(command: string) {
+    document.execCommand(command, false)
+    emit()
+  }
+
+  function applyFontSize(size: string) {
+    const range = savedRange.current
+    if (!range || range.collapsed) return
+    const span = document.createElement('span')
+    span.style.fontSize = size
+    try {
+      range.surroundContents(span)
+    } catch {
+      // Selection crosses element boundaries — extract and re-wrap it.
+      span.appendChild(range.extractContents())
+      range.insertNode(span)
+    }
+    const sel = window.getSelection()
+    if (sel) {
+      sel.removeAllRanges()
+      const r = document.createRange()
+      r.selectNodeContents(span)
+      sel.addRange(r)
+      savedRange.current = r.cloneRange()
+    }
+    emit()
   }
 
   const tbBtn: React.CSSProperties = {
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    width: 30, height: 30, border: '1px solid #E5E7EB', borderRadius: 6,
+    width: 32, height: 32, border: '1px solid #E5E7EB', borderRadius: 6,
     background: 'white', color: '#374151', cursor: 'pointer',
   }
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 4, marginBottom: 6, flexWrap: 'wrap' }}>
-        <button type="button" title="Fett" onClick={() => surround('<strong>', '</strong>')} style={tbBtn}><Bold size={14} /></button>
-        <button type="button" title="Kursiv" onClick={() => surround('<em>', '</em>')} style={tbBtn}><Italic size={14} /></button>
-        <button type="button" title="Unterstrichen" onClick={() => surround('<u>', '</u>')} style={tbBtn}><Underline size={14} /></button>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+        {/* onMouseDown preventDefault keeps the text selection while clicking the button */}
+        <button type="button" title="Fett" onMouseDown={e => e.preventDefault()} onClick={() => exec('bold')} style={tbBtn}><Bold size={15} /></button>
+        <button type="button" title="Kursiv" onMouseDown={e => e.preventDefault()} onClick={() => exec('italic')} style={tbBtn}><Italic size={15} /></button>
+        <button type="button" title="Unterstrichen" onMouseDown={e => e.preventDefault()} onClick={() => exec('underline')} style={tbBtn}><Underline size={15} /></button>
         <select
           title="Schriftgröße"
           value=""
-          onChange={e => { if (e.target.value) surround(`<span style="font-size:${e.target.value};">`, '</span>') }}
-          style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 90, padding: '0 8px', height: 30 }}
+          onChange={e => { if (e.target.value) applyFontSize(e.target.value) }}
+          style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 96, padding: '0 8px', height: 32 }}
         >
-          <option value="">Größe…</option>
-          <option value="13px">Klein</option>
-          <option value="18px">Größer</option>
-          <option value="22px">Groß</option>
-          <option value="28px">Sehr groß</option>
+          <option value="">Schriftgröße</option>
+          {FONT_SIZES.map(s => <option key={s} value={s}>{s.replace('px', ' px')}</option>)}
         </select>
       </div>
-      <textarea
+      <div
         ref={ref}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        rows={10}
-        style={{ ...inputStyle, resize: 'vertical', fontFamily: 'monospace', fontSize: 12, lineHeight: 1.5 }}
+        contentEditable
+        suppressContentEditableWarning
+        onInput={emit}
+        onMouseUp={saveSelection}
+        onKeyUp={saveSelection}
+        style={{
+          ...inputStyle,
+          minHeight: 160,
+          padding: '12px 14px',
+          fontFamily: 'inherit',
+          fontSize: 14,
+          lineHeight: 1.6,
+          color: '#374151',
+          overflowY: 'auto',
+          cursor: 'text',
+        }}
       />
       <p style={{ fontSize: 11, color: '#9CA3AF', margin: '5px 0 0' }}>
-        Text markieren und auf einen Knopf klicken, um ihn zu formatieren.
+        Text auswählen und einen Knopf bzw. die Schriftgröße wählen, um nur die Auswahl zu formatieren.
       </p>
     </div>
   )
